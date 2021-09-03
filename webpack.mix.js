@@ -15,7 +15,10 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         require('postcss-import'),
         require('tailwindcss'),
-    ]);
+    ])
+    .scripts([
+        'node_modules/sweetalert2/dist/sweetalert2.all.min.js',
+    ], 'public/js/app.js');
 
 if (mix.inProduction()) {
     mix.version();

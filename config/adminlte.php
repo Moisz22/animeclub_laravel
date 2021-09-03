@@ -15,8 +15,8 @@ return [
     */
 
     'title' => '',
-    'title_prefix' => 'AnimeClub | ',
-    'title_postfix' => '',
+    'title_prefix' => '',
+    'title_postfix' => ' | AnimeClub',
 
     /*
     |--------------------------------------------------------------------------
@@ -414,7 +414,7 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => true,
+            'active' => false,
             'files' => [
                 [
                     'type' => 'js',
@@ -484,12 +484,12 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                    'location' => '/js/app.js',
                 ],
             ],
         ],

@@ -9,8 +9,11 @@ class Gender extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['nombre'];
+
     public function genders()
     {
         $this->hasMany('App\Models\AnimeGender');
     }
+
 }

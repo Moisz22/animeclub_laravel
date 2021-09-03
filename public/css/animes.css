@@ -1,0 +1,11 @@
+.centrar_imagen{
+	display: block;
+	margin: auto;
+}
+
+.animes_lista{
+	height: 150px; 
+	width: 101px;
+	border-radius: 10px;
+}
+

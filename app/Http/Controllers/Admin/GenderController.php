@@ -44,7 +44,8 @@ class GenderController extends Controller
         $genero = new Gender;
         $genero->nombre = $request->input('genero_nombre');
         $genero->save();
-        return redirect()->route('generos.index');
+
+        return redirect()->route('generos.index')->with('message', 'Genero creado correctamente');
     }
 
     /**
@@ -53,14 +54,14 @@ class GenderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Gender $genero)
     {
-        //
+        return response()->array($genero)->toJson();
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
+     *p
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -85,7 +86,7 @@ class GenderController extends Controller
         $generos = Gender::all();
         $genero->nombre = $request->input('genero_nombre');
         $genero->save();
-        return redirect()->route('generos.index', compact('generos'));
+        return redirect()->route('generos.index')->with('message', 'Genero actualizado correctamente');
     }
 
     /**
@@ -97,7 +98,6 @@ class GenderController extends Controller
     public function destroy(Gender $genero)
     {
         $genero->delete();
-        $generos = Gender::all();
-        return redirect()->route('generos.index', compact('generos'));
+        return redirect()->route('generos.index')->with('message', 'Genero eliminado correctamente');
     }
 }
