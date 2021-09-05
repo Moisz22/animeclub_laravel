@@ -249,76 +249,83 @@ return [
             'label_color' => 'success',
             'active'      => ['', 'admin'],
         ],
-        /* ['header' => 'MODULOS'], */
+        ['header' => 'MODULOS'],
         [
             'text' => 'Seguridad',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
-            'can'  => 'modulo seguridad',
             'submenu' => [
                 [
                     'text' => 'Usuarios',
                     'icon' => 'fas fa-fw fa-users',
                     'url'  => '#',
+                    'can'  => 'usuarios',
                 ],
                 [
                     'text' => 'Roles',
                     'icon' => 'fas fa-fw fa-user-shield',
                     'url'  => '#',
+                    'can'  => 'roles',
                 ],
                 [
                     'text' => 'Permisos',
                     'icon' => 'fas fa-fw fa-user-shield',
                     'url'  => '#',
+                    'can'  => 'permisos',
                 ]
             ]
         ],
         [
             'text'    => 'Operativo',
             'icon'    => 'fas fa-fw fa-cogs',
-            'can'     => 'modulo operativo',
             'submenu' => [
                 [
                     'text' => 'Animes',
                     'url'  => '#',
-                    'icon' => 'fas fa-fw fa-tv'
+                    'icon' => 'fas fa-fw fa-tv',
+                    'can'  => 'animes',
                 ],
                 [
                     'text' => 'Ovas',
                     'url'  => '#',
-                    'icon' => 'fas fa-fw fa-video'
+                    'icon' => 'fas fa-fw fa-video',
+                    'can'  => 'ovas',
                 ],
                 [
                     'text' => 'Peliculas',
                     'url'  => '#',
-                    'icon' => 'fas fa-fw fa-film'
+                    'icon' => 'fas fa-fw fa-film',
+                    'can'  => 'peliculas',
                 ],
                 [
                     'text' => 'Mangas',
                     'url'  => '#',
-                    'icon' => 'fas fa-fw fa-swatchbook'
+                    'icon' => 'fas fa-fw fa-swatchbook',
+                    'can'  => 'mangas',
                 ],
                 [
                     'text' => 'Novelas ligeras',
                     'url'  => '#',
-                    'icon' => 'fas fa-fw fa-book-reader'
+                    'icon' => 'fas fa-fw fa-book-reader',
+                    'can'  => 'novelas_ligeras',
                 ],
             ]
         ],
         [
             'text'    => 'Mantenimiento',
             'icon'    => 'fas fa-fw fa-tools',
-            'can'     => 'modulo mantenimiento',
             'submenu' => [
                 [
                     'text' => 'Generos',
                     'url'  => 'admin/generos',
                     'icon' => 'fas fa-fw fa-file-video',
+                    'can'  => 'generos',
                 ],
                 [
                     'text' => 'Reseñas',
                     'url'  => '#',
-                    'icon' => 'fas fa-fw fa-comments'
+                    'icon' => 'fas fa-fw fa-comments',
+                    'can'  => 'resenas',
                 ],
                 [
                     'text'    => 'level_one',
@@ -349,24 +356,24 @@ return [
         [
             'text'    => 'Parametros',
             'icon'    => 'fas fa-fw fa-sliders-h',
-            'can'     => 'modulo parametros',
             'submenu' => [
                 [
                     'text' => 'Paginacion',
                     'url'  => '#',
-                    'icon' => 'fas fa-fw fa-bookmark'
+                    'icon' => 'fas fa-fw fa-bookmark',
+                    'can'  => 'paginacion',
                 ]
             ]
         ],
         [
             'text'    => 'Reportes',
             'icon'    => 'fas fa-fw fa-tachometer-alt',
-            'can'     => 'modulo reportes',
             'submenu' => [
                 [
                     'text' => 'Progreso de animes',
                     'url'  => '#',
                     'icon' => 'fas fa-fw fa-tasks',
+                    'can'  => 'progreso',
                 ]
             ]
         ],

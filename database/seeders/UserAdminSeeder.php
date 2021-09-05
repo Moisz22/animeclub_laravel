@@ -17,16 +17,31 @@ class UserAdminSeeder extends Seeder
     public function run()
     {
         $rol = Role::create(['name' => 'administrador']);
-        $permiso = Permission::create(['name' => 'modulo seguridad']);
+        $permiso = Permission::create(['name' => 'usuarios']);
         $rol->givePermissionTo($permiso);
-        $permiso = Permission::create(['name' => 'modulo operativo']);
+        $permiso = Permission::create(['name' => 'roles']);
         $rol->givePermissionTo($permiso);
-        $permiso = Permission::create(['name' => 'modulo mantenimiento']);
+        $permiso = Permission::create(['name' => 'permisos']);
         $rol->givePermissionTo($permiso);
-        $permiso = Permission::create(['name' => 'modulo parametros']);
+        $permiso = Permission::create(['name' => 'animes']);
         $rol->givePermissionTo($permiso);
-        $permiso = Permission::create(['name' => 'modulo reportes']);
+        $permiso = Permission::create(['name' => 'ovas']);
         $rol->givePermissionTo($permiso);
+        $permiso = Permission::create(['name' => 'peliculas']);
+        $rol->givePermissionTo($permiso);
+        $permiso = Permission::create(['name' => 'mangas']);
+        $rol->givePermissionTo($permiso);
+        $permiso = Permission::create(['name' => 'novelas_ligeras']);
+        $rol->givePermissionTo($permiso);
+        $permiso = Permission::create(['name' => 'generos']);
+        $rol->givePermissionTo($permiso);
+        $permiso = Permission::create(['name' => 'resenas']);
+        $rol->givePermissionTo($permiso);
+        $permiso = Permission::create(['name' => 'paginacion']);
+        $rol->givePermissionTo($permiso);
+        $permiso = Permission::create(['name' => 'progreso']);
+        $rol->givePermissionTo($permiso);
+        
 
         $user = new User;
         $user->name = 'Moises Suarez';

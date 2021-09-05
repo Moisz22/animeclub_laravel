@@ -1623,6 +1623,15 @@ select {
 .bg-opacity-25 {
 	--tw-bg-opacity: 0.25;
 }
+.bg-cover {
+	background-size: cover;
+}
+.bg-center {
+	background-position: center;
+}
+.bg-no-repeat {
+	background-repeat: no-repeat;
+}
 .object-cover {
 	-o-object-fit: cover;
 	   object-fit: cover;
@@ -1727,6 +1736,9 @@ select {
 }
 .pt-8 {
 	padding-top: 2rem;
+}
+.text-left {
+	text-align: left;
 }
 .text-center {
 	text-align: center;
