@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserAdminSeeder;
+use App\Models\Gender;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,6 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+        Gender::factory(20)->create();
         $this->call(UserAdminSeeder::class);
     }
 }

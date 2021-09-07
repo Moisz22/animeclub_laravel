@@ -1,11 +1,7 @@
 <div>
-    @if (session()->has('message'))
-        <x-adminlte-alert theme="success" title="Exito" dismissable>{{session('message')}}</x-adminlte-alert>
-    @endif
-     
     <div class="card card-primary card-outline">
         <div class="card-body">
-            <button wire:click="nuevo" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Crear genero</button>
+            <button wire:click="nuevo" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Crear rol</button>
         </div>
         <div class="col-sm-12 col-sm-6 table-responsive">
             <table class="table table-striped table-bordered nowrap" width="100%">
@@ -18,22 +14,28 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($generos as $genero)
+                    @foreach ($roles as $rol)
                     <tr>
-                        <td>{{$genero->id}}</td>
-                        <td>{{$genero->nombre}}</td>
-                        <td><a wire:click="mostrar({{$genero->id}})" data-toggle="modal" data-target="#exampleModal" href="#{{-- {{route('generos.edit', $genero->id)}} --}}" class="btn btn-success"><i class="fas fa-edit"></i></a></td>
+                        <td>{{$rol->id}}</td>
+                        <td>{{$rol->name}}</td>
+                        <td><a wire:click="mostrar({{$rol->id}})" data-toggle="modal" data-target="#exampleModal" class="btn btn-success"><i class="fas fa-edit"></i></a></td>
                         <td>
-                            <button wire:click="$emit('confirm',{{$genero->id}})" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                            @if($rol->id != 1)
+                                <button wire:click="$emit('confirm',{{$rol->id}})" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                            @else
+                                <button class="disabled btn btn-danger"><i class="fas fa-trash"></i></button>
+                            @endif
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
+                {{$roles->links()}}
         </div>
         <br>
     </div>
-    @include('livewire.modal')
+    @include('livewire.modals.modalRoles')
+
     <script>
         document.addEventListener('livewire:load', ()=>{
 
@@ -49,7 +51,7 @@
 
                 Swal.fire({
                     title: '¿Estás seguro?',
-                    text: "You won't be able to revert this!",
+                    text: "No podrás revertir esto!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -58,11 +60,6 @@
                     }).then((result) => {
                         if (result.isConfirmed) {
                             Livewire.emit('eliminar', id);
-                            /* Swal.fire(
-                            'Borrado!',
-                            'Your file has been deleted.',
-                            'success'
-                            ) */
                         }
                     })
 
@@ -70,4 +67,5 @@
             
         })
     </script>
+    
 </div>

@@ -4,14 +4,17 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Gender;
+use Livewire\WithPagination;
 
 class TablaGeneros extends Component
 {
-    public $generos;
+    use WithPagination;
+    
+    protected $paginationTheme = 'bootstrap';
     public $genero_id;
     public $nombre;
     protected $rules = [
-        'nombre' => 'required|min:4|unique:genders,nombre'
+        'nombre' => 'required|unique:genders,nombre'
     ];
     //es necesario para eventos Livewire.emit en js
     protected $listeners = [
@@ -31,13 +34,28 @@ class TablaGeneros extends Component
 
     public function guardar()
     {
-        $genero = Gender::updateOrCreate(
-            ['id' => $this->genero_id],
-            ['nombre' => $this->nombre]
-        );
-        $mensaje = ($this->genero_id) ? 'Genero actualizado con exito' : 'Genero guardado con exito';
-        $this->emit('message', $mensaje);
+        $this->validate();
+
+        $genero = Gender::create([
+            'nombre' => $this->nombre
+        ]);
+        
+        $this->emit('message', 'Genero guardado con exito');
         $this->nuevo();
+    }
+
+    public function actualizar()
+    {
+        $validar = $this->validate([
+            'nombre' => 'required',
+            'genero_id' => 'required'
+        ]);
+        
+        $genero = Gender::find($this->genero_id);
+        $genero->nombre = $this->nombre;
+        $genero->save();
+        $this->emit('message', 'Genero actualizado con exito'); 
+
     }
 
     public function confirm($id)
@@ -53,13 +71,14 @@ class TablaGeneros extends Component
 
     public function nuevo()
     {
+        $this->resetValidation();
         $this->nombre = '';
         $this->genero_id = '';
     }
 
     public function render()
     {
-        $this->generos = Gender::all();
-        return view('livewire.tabla-generos');
+        $generos = Gender::paginate(5);
+        return view('livewire.tablas.tabla-generos', compact('generos'));
     }
 }

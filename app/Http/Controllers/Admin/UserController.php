@@ -4,9 +4,8 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Gender;
 
-class GenderController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class GenderController extends Controller
      */
     public function index()
     {
-        return view('admin.generos.index');
+        return view('admin.usuarios.index');
     }
 
     /**
@@ -25,7 +24,7 @@ class GenderController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -36,15 +35,7 @@ class GenderController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'genero_nombre' => 'required|min:4|max:100|unique:genders,nombre'
-        ]);
-
-        $genero = new Gender;
-        $genero->nombre = $request->input('genero_nombre');
-        $genero->save();
-
-        return redirect()->route('generos.index')->with('message', 'Genero creado correctamente');
+        //
     }
 
     /**
@@ -53,20 +44,20 @@ class GenderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Gender $genero)
+    public function show($id)
     {
-        return response()->array($genero)->toJson();
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
-     *p
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Gender $genero)
+    public function edit($id)
     {
-        
+        //
     }
 
     /**
@@ -76,16 +67,9 @@ class GenderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Gender $genero)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'genero_nombre' => 'required|min:4|max:100'
-        ]);
-        
-        $generos = Gender::all();
-        $genero->nombre = $request->input('genero_nombre');
-        $genero->save();
-        return redirect()->route('generos.index')->with('message', 'Genero actualizado correctamente');
+        //
     }
 
     /**
@@ -94,9 +78,8 @@ class GenderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Gender $genero)
+    public function destroy($id)
     {
-        $genero->delete();
-        return redirect()->route('generos.index')->with('message', 'Genero eliminado correctamente');
+        //
     }
 }

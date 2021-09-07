@@ -258,13 +258,13 @@ return [
                 [
                     'text' => 'Usuarios',
                     'icon' => 'fas fa-fw fa-users',
-                    'url'  => '#',
+                    'url'  => 'admin/usuarios',
                     'can'  => 'usuarios',
                 ],
                 [
                     'text' => 'Roles',
                     'icon' => 'fas fa-fw fa-user-shield',
-                    'url'  => '#',
+                    'url'  => 'admin/roles',
                     'can'  => 'roles',
                 ],
                 [

@@ -5,27 +5,29 @@
       <div class="modal-content">
         <form>
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Genero</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Usuario</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
             <div class="modal-body">
-              <x-adminlte-input name="genero_id" wire:model="genero_id" label="id" id="genero_id"
-              fgroup-class="col-md-12 d-none" value="{{old('genero_nombre')}}" disable-feedback/>
+              <x-adminlte-input name="user_id" wire:model="user_id"
+              fgroup-class="col-md-12 d-none" disable-feedback/>
               <div class="row">
-                <x-adminlte-input name="genero_nombre" wire:model="nombre" label="Nombre" id="genero_nombre" minlength="3" placeholder=""
-                fgroup-class="col-md-12" value="{{old('genero_nombre')}}" disable-feedback/>
+                <x-adminlte-input name="nombre" wire:model="nombre" label="Nombre" minlength="3"
+                fgroup-class="col-md-12" disable-feedback/>
                 @error('nombre') <span class="error text-danger">{{ $message }}</span> @enderror
+                <x-adminlte-input name="email" label="email" wire:model="email" fgroup-class="col-md-12" disable-feedback/>
+                @error('email') <span class="error text-danger">{{$message}}</span> @enderror
               </div>
             </div>
             <div class="modal-footer"> 
-                @if($genero_id)
-                  <button type="button" class="btn btn-success" wire:click.prevent="guardar" data-dismiss="modal">Actualizar</button>
+                @if($user_id)
+                  <button type="button" class="btn btn-success" wire:click.prevent="actualizar" data-dismiss="modal">Actualizar</button>
                 @else
                   <button type="button" class="btn btn-success" wire:click.prevent="guardar" data-dismiss="modal">Guardar</button>
                 @endif
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
             </div>
         </form>
       </div>
