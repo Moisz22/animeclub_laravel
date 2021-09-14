@@ -10,6 +10,7 @@
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Email</th>
+                        <th>Rol</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
@@ -20,6 +21,9 @@
                         <td>{{$usuario->id}}</td>
                         <td>{{$usuario->name}}</td>
                         <td>{{$usuario->email}}</td>
+                        <td>@foreach($usuario->getRoleNames() as $rol)
+                            {{$rol}}
+                        @endforeach</td>
                         <td><a wire:click="mostrar({{$usuario->id}})" data-toggle="modal" data-target="#exampleModal" class="btn btn-success"><i class="fas fa-edit"></i></a></td>
                         <td>
                             @if($usuario->id != 1)

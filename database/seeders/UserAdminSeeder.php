@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Maintenance;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
@@ -37,7 +38,7 @@ class UserAdminSeeder extends Seeder
         $rol->givePermissionTo($permiso);
         $permiso = Permission::create(['name' => 'resenas']);
         $rol->givePermissionTo($permiso);
-        $permiso = Permission::create(['name' => 'paginacion']);
+        $permiso = Permission::create(['name' => 'parametros']);
         $rol->givePermissionTo($permiso);
         $permiso = Permission::create(['name' => 'progreso']);
         $rol->givePermissionTo($permiso);
@@ -51,5 +52,10 @@ class UserAdminSeeder extends Seeder
         $user->save();
 
         $user->assignRole($rol);
+
+        Maintenance::create([
+            'mantenimiento' => 'off',
+            'paginacion' => 5
+        ]);
     }
 }

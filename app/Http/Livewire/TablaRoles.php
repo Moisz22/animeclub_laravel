@@ -31,7 +31,7 @@ class TablaRoles extends Component
     public function guardar()
     {
         $this->validate([
-            'name' => 'bail|required|unique:roles,name'
+            'nombre' => 'bail|required|unique:roles,name'
         ]);
 
         Role::create(['name' => $this->nombre]);

@@ -19,6 +19,12 @@
                 @error('nombre') <span class="error text-danger">{{ $message }}</span> @enderror
                 <x-adminlte-input name="email" label="email" wire:model="email" fgroup-class="col-md-12" disable-feedback/>
                 @error('email') <span class="error text-danger">{{$message}}</span> @enderror
+                <label for="rol">Rol</label><select class="col-md-12 form-control" name="rol_id" id="rol_id" wire:model="rol_id">
+                  <option>Seleccione un rol</option>
+                  @foreach ($roles as $rol)
+                    <option value="{{$rol->id}}">{{$rol->name}}</option>
+                  @endforeach
+                </select>
               </div>
             </div>
             <div class="modal-footer"> 

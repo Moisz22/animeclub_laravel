@@ -263,14 +263,14 @@ return [
                 ],
                 [
                     'text' => 'Roles',
-                    'icon' => 'fas fa-fw fa-user-shield',
+                    'icon' => 'fas fa-fw fa-user-tag',
                     'url'  => 'admin/roles',
                     'can'  => 'roles',
                 ],
                 [
                     'text' => 'Permisos',
                     'icon' => 'fas fa-fw fa-user-shield',
-                    'url'  => '#',
+                    'url'  => 'admin/permisos',
                     'can'  => 'permisos',
                 ]
             ]
@@ -356,14 +356,7 @@ return [
         [
             'text'    => 'Parametros',
             'icon'    => 'fas fa-fw fa-sliders-h',
-            'submenu' => [
-                [
-                    'text' => 'Paginacion',
-                    'url'  => '#',
-                    'icon' => 'fas fa-fw fa-bookmark',
-                    'can'  => 'paginacion',
-                ]
-            ]
+            'url'     => 'admin/parametros',
         ],
         [
             'text'    => 'Reportes',
