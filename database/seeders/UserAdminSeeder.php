@@ -54,8 +54,13 @@ class UserAdminSeeder extends Seeder
         $user->assignRole($rol);
 
         Maintenance::create([
-            'mantenimiento' => 'off',
-            'paginacion' => 5
+            'nombre' => 'mantenimiento',
+            'valor'  => 'off'
+        ]);
+
+        Maintenance::create([
+            'nombre' => 'paginacion',
+            'valor'  => '5'
         ]);
     }
 }

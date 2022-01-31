@@ -9,7 +9,7 @@
                         <br>
                         <!-- Default switch -->
                         <div class="custom-control custom-switch">
-                            <input wire:change="mantenimiento" type="checkbox" class="custom-control-input" id="customSwitches" @if($mantenimiento->mantenimiento == 'on') checked @endif>
+                            <input wire:change="mantenimiento" type="checkbox" class="custom-control-input" id="customSwitches" @if($mantenimiento->valor == 'on') checked @endif>
                             <label class="custom-control-label" for="customSwitches">Modo mantenimiento</label>
                         </div>
                         <br>
@@ -44,6 +44,18 @@
             </div>
 
         </div>
-    </div>
-    
+    </div>    
 </div>
+
+{{-- <script>
+
+    document.addEventListener('livewire:on', ()=>{
+
+        Livewire.on('deshabilita_switch', mensaje=>{
+            document.getElementById('customSwitches').setAttribute('disabled', 'disabled');
+        })
+
+    })
+    
+</script> --}}
+

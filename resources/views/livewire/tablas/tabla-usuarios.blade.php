@@ -1,5 +1,5 @@
 <div>
-    <div class="card card-primary card-outline">
+    {{-- <div class="card card-primary card-outline">
         <div class="card-body">
             <button wire:click="nuevo" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Crear usuario</button>
         </div>
@@ -39,11 +39,59 @@
                 {{$usuarios->links()}}
         </div>
         <br>
+    </div> --}}
+
+    <div class="card card-primary card-outline">
+        <div class="card-body">
+            <button wire:click="nuevo" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Crear usuario</button>
+            <table class="table table-bordered datatable table-striped no-wrap">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Rol</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        @foreach ($usuarios as $usuario)
+                    <tr>
+                        <td>{{$usuario->id}}</td>
+                        <td>{{$usuario->name}}</td>
+                        <td>{{$usuario->email}}</td>
+                        <td>@foreach($usuario->getRoleNames() as $rol)
+                            {{$rol}}
+                        @endforeach</td>
+                        <td><a wire:click="mostrar({{$usuario->id}})" data-toggle="modal" data-target="#exampleModal" class="btn btn-success"><i class="fas fa-edit"></i></a></td>
+                        <td>
+                            @if($usuario->id != 1)
+                                <button wire:click="$emit('confirm',{{$usuario->id}})" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                            @else
+                                <button class="disabled btn btn-danger"><i class="fas fa-trash"></i></button>
+                            @endif
+                        </td>
+                    </tr>
+                    @endforeach
+                    
+                </tbody>
+            </table>
+        </div>
     </div>
+
     @include('livewire.modals.modalUsuarios')
 
     <script>
+
         document.addEventListener('livewire:load', ()=>{
+
+            Livewire.on('datatable', ()=>{
+                $(document).ready( function () {
+                    $('.datatable').DataTable({ responsive:true });
+                })
+            })
 
             Livewire.on('message', mensaje =>{
                 Swal.fire(
@@ -70,7 +118,9 @@
                     })
 
             })
-            
+            /* $(document).ready( function () { */
+                    $('.datatable').DataTable({ responsive:true });
+                /* }) */
         })
 
     </script>

@@ -4,12 +4,12 @@
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Administre y cierre la sesión de sus sesiones activas en otros navegadores y dispositivos.') }}
+        {{ __('Revise sus sesiones activas en otros navegadores y dispositivos.') }}
     </x-slot>
 
     <x-slot name="content">
         <div class="max-w-xl text-sm text-gray-600">
-            {{ __('Si es necesario, puede cerrar la sesión de todas las demás sesiones de su navegador en todos sus dispositivos. Algunas de sus sesiones recientes se enumeran a continuación; sin embargo, esta lista puede no ser exhaustiva. Si cree que su cuenta se ha visto comprometida, también debe actualizar su contraseña.') }}
+            {{ __('Algunas de sus sesiones recientes se enumeran a continuación; sin embargo, esta lista puede no ser exhaustiva. Si cree que su cuenta se ha visto comprometida, debe actualizar su contraseña.') }}
         </div>
 
         @if (count($this->sessions) > 0)
@@ -51,7 +51,7 @@
             </div>
         @endif
 
-        <div class="flex items-center mt-5">
+        {{-- <div class="flex items-center mt-5">
             <x-jet-button wire:click="confirmLogout" wire:loading.attr="disabled">
                 {{ __('Cerrar sesión en otras sesiones del navegador') }}
             </x-jet-button>
@@ -60,7 +60,7 @@
                 {{ __('Hecho.') }}
             </x-jet-action-message>
         </div>
-
+ --}}
         <!-- Log Out Other Devices Confirmation Modal -->
         <x-jet-dialog-modal wire:model="confirmingLogout">
             <x-slot name="title">

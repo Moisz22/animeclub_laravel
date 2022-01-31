@@ -17,9 +17,9 @@
                 <x-adminlte-input name="nombre" wire:model="nombre" label="Nombre" minlength="3"
                 fgroup-class="col-md-12" disable-feedback/>
                 @error('nombre') <span class="error text-danger">{{ $message }}</span> @enderror
-                <x-adminlte-input name="email" label="email" wire:model="email" fgroup-class="col-md-12" disable-feedback/>
-                @error('email') <span class="error text-danger">{{$message}}</span> @enderror
-                <label for="rol">Rol</label><select class="col-md-12 form-control" name="rol_id" id="rol_id" wire:model="rol_id">
+                <x-adminlte-input name="email" label="email" wire:model.lazy="email" fgroup-class="col-md-12" disable-feedback/>
+                @error('email') <span class="error text-danger col-md-12">{{$message}}</span> @enderror
+                <label for="rol_id">Rol</label><select class="col-md-12 form-control" name="rol_id" id="rol_id" wire:model="rol_id">
                   <option>Seleccione un rol</option>
                   @foreach ($roles as $rol)
                     <option value="{{$rol->id}}">{{$rol->name}}</option>

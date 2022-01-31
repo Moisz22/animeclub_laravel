@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\User;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Role;
+use App\Models\Maintenance;
 
 class TablaUsuarios extends Component
 {
@@ -20,13 +21,14 @@ class TablaUsuarios extends Component
     protected $listeners = ['eliminar'];
     protected $rules = [
         'nombre' => 'required',
-        'email' =>  'required|email'
+        'email' =>  'required|email|min:1'
     ];
 
-    public function updated()
+    public function updatedEmail($email)
     {
-        $this->validateOnly('nombre');
-        $this->validateOnly('email');
+        $this->validate([
+            'email' => 'required|min:1|email'
+        ]);
     }
 
     public function mostrar(User $user)
@@ -34,6 +36,7 @@ class TablaUsuarios extends Component
         $this->user_id = $user->id;
         $this->nombre = $user->name;
         $this->email = $user->email;
+        $this->rol_id = Role::findByName($user->getRoleNames()[0])->id;
     }
 
     public function nuevo()
@@ -59,10 +62,7 @@ class TablaUsuarios extends Component
 
     public function guardar()
     {
-        $this->validate([
-            'nombre' => 'bail|required',
-            'email' => 'bail|email|unique:users,email'
-        ]);
+       $this->validate();
 
         $usuario = User::create([
             'name'  => $this->nombre,
@@ -88,8 +88,10 @@ class TablaUsuarios extends Component
 
     public function render()
     {
+        $this->emit('datatable');
+        $paginacion = Maintenance::select('valor')->where('nombre', 'paginacion')->get()[0]->valor;
         $this->roles = Role::all();
-        $usuarios = User::paginate(5);
+        $usuarios = User::paginate($paginacion);
         return view('livewire.tablas.tabla-usuarios', compact('usuarios'));
     }
 }

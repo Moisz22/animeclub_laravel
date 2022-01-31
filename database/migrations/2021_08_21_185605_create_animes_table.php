@@ -19,6 +19,7 @@ class CreateAnimesTable extends Migration
             $table->string('nombre_alternativo',200);
             $table->text('sinopsis');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

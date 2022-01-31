@@ -14,9 +14,9 @@ class Parametros extends Component
 
     public function mantenimiento()
     {
-        $mantenimiento = $this->mantenimiento = Maintenance::find(1);
+        $mantenimiento = $this->mantenimiento = Maintenance::where('nombre', 'mantenimiento')->first();
 
-        if($mantenimiento->mantenimiento == 'off')
+        if($mantenimiento->valor == 'off')
         {
             $faker = Faker\Factory::create();
             $this->token = (string)$faker->randomNumber(7, true);
@@ -25,14 +25,15 @@ class Parametros extends Component
                 '--secret' => $this->token
             ]);
 
-            $mantenimiento->mantenimiento = 'on';
-
+            $mantenimiento->valor = 'on';
+            $mantenimiento->dato1 = $this->token;
         }
         else
         {
             $this->token = '';
             Artisan::call('up');
-            $mantenimiento->mantenimiento = 'off';
+            $mantenimiento->valor = 'off';
+            $mantenimiento->dato1 = NULL;
         }
         
         $mantenimiento->save();
@@ -40,7 +41,7 @@ class Parametros extends Component
 
     public function render()
     {
-        $this->mantenimiento = Maintenance::find(1);
+        $this->mantenimiento = Maintenance::where('nombre', 'mantenimiento')->first();
         return view('livewire.parametros');
     }
 }
