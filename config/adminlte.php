@@ -168,7 +168,7 @@ return [
     */
 
     'right_sidebar' => false,
-    'right_sidebar_icon' => 'fas fa-cogs',
+    'right_sidebar_icon' => 'fa fa-cogs',
     'right_sidebar_theme' => 'dark',
     'right_sidebar_slide' => true,
     'right_sidebar_push' => true,
@@ -244,7 +244,7 @@ return [
         [
             'text'        => 'Animes',
             'url'         => 'animes',
-            'icon'        => 'fas fa-fw fa-ghost',
+            'icon'        => 'fa fa-fw fa-ghost',
             'label'       => 5,
             'label_color' => 'success',
             'active'      => ['', 'admin'],
@@ -253,23 +253,23 @@ return [
         [
             'text' => 'Seguridad',
             'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'icon' => 'fa fa-fw fa-lock',
             'submenu' => [
                 [
                     'text' => 'Usuarios',
-                    'icon' => 'fas fa-fw fa-users',
+                    'icon' => 'fa fa-fw fa-users',
                     'url'  => 'admin/usuarios',
                     'can'  => 'usuarios',
                 ],
                 [
                     'text' => 'Roles',
-                    'icon' => 'fas fa-fw fa-user-tag',
+                    'icon' => 'fa fa-fw fa-user-tag',
                     'url'  => 'admin/roles',
                     'can'  => 'roles',
                 ],
                 [
                     'text' => 'Permisos',
-                    'icon' => 'fas fa-fw fa-user-shield',
+                    'icon' => 'fa fa-fw fa-user-shield',
                     'url'  => 'admin/permisos',
                     'can'  => 'permisos',
                 ]
@@ -277,54 +277,54 @@ return [
         ],
         [
             'text'    => 'Operativo',
-            'icon'    => 'fas fa-fw fa-cogs',
+            'icon'    => 'fa fa-fw fa-cogs',
             'submenu' => [
                 [
                     'text' => 'Animes',
                     'url'  => '#',
-                    'icon' => 'fas fa-fw fa-tv',
+                    'icon' => 'fa fa-fw fa-tv',
                     'can'  => 'animes',
                 ],
                 [
                     'text' => 'Ovas',
                     'url'  => '#',
-                    'icon' => 'fas fa-fw fa-video',
+                    'icon' => 'fa fa-fw fa-video',
                     'can'  => 'ovas',
                 ],
                 [
                     'text' => 'Peliculas',
                     'url'  => '#',
-                    'icon' => 'fas fa-fw fa-film',
+                    'icon' => 'fa fa-fw fa-film',
                     'can'  => 'peliculas',
                 ],
                 [
                     'text' => 'Mangas',
                     'url'  => '#',
-                    'icon' => 'fas fa-fw fa-swatchbook',
+                    'icon' => 'fa fa-fw fa-swatchbook',
                     'can'  => 'mangas',
                 ],
                 [
                     'text' => 'Novelas ligeras',
                     'url'  => '#',
-                    'icon' => 'fas fa-fw fa-book-reader',
+                    'icon' => 'fa fa-fw fa-book-reader',
                     'can'  => 'novelas_ligeras',
                 ],
             ]
         ],
         [
             'text'    => 'Mantenimiento',
-            'icon'    => 'fas fa-fw fa-tools',
+            'icon'    => 'fa fa-fw fa-tools',
             'submenu' => [
                 [
                     'text' => 'Generos',
                     'url'  => 'admin/generos',
-                    'icon' => 'fas fa-fw fa-file-video',
+                    'icon' => 'fa fa-fw fa-file-video',
                     'can'  => 'generos',
                 ],
                 [
                     'text' => 'Reseñas',
                     'url'  => '#',
-                    'icon' => 'fas fa-fw fa-comments',
+                    'icon' => 'fa fa-fw fa-comments',
                     'can'  => 'resenas',
                 ],
                 [
@@ -355,17 +355,17 @@ return [
         ],
         [
             'text'    => 'Parametros',
-            'icon'    => 'fas fa-fw fa-sliders-h',
+            'icon'    => 'fa fa-fw fa-sliders-h',
             'url'     => 'admin/parametros',
         ],
         [
             'text'    => 'Reportes',
-            'icon'    => 'fas fa-fw fa-tachometer-alt',
+            'icon'    => 'fa fa-fw fa-tachometer-alt',
             'submenu' => [
                 [
                     'text' => 'Progreso de animes',
                     'url'  => '#',
-                    'icon' => 'fas fa-fw fa-tasks',
+                    'icon' => 'fa fa-fw fa-tasks',
                     'can'  => 'progreso',
                 ]
             ]
@@ -463,13 +463,18 @@ return [
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
+                    'asset' => true,
+                    'location' => 'vendor/select2/js/select2.full.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
+                    'asset' => true,
+                    'location' => 'vendor/select2/css/select2.min.css',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css',
                 ],
             ],
         ],

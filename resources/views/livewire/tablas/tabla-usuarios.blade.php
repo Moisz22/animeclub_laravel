@@ -89,7 +89,10 @@
 
             Livewire.on('datatable', ()=>{
                 $(document).ready( function () {
-                    $('.datatable').DataTable({ responsive:true });
+                    $('.datatable').DataTable({
+                         language: { url: '//cdn.datatables.net/plug-ins/1.11.4/i18n/es_es.json' } 
+                         ,responsive:true 
+                    });
                 })
             })
 
@@ -119,7 +122,7 @@
 
             })
             /* $(document).ready( function () { */
-                    $('.datatable').DataTable({ responsive:true });
+                    $('.datatable').DataTable({ language: { url: '//cdn.datatables.net/plug-ins/1.11.4/i18n/es_es.json' },responsive:true });
                 /* }) */
         })
 

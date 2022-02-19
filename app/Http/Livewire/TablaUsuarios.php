@@ -24,12 +24,12 @@ class TablaUsuarios extends Component
         'email' =>  'required|email|min:1'
     ];
 
-    public function updatedEmail($email)
+    /* public function updatedEmail($email)
     {
         $this->validate([
             'email' => 'required|min:1|email'
         ]);
-    }
+    } */
 
     public function mostrar(User $user)
     {

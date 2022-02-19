@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('', [HomeController::class, 'index']);
 Route::get('generos', [GenderController::class, 'index'])->name('generos.index')->middleware('can:generos');
 Route::get('usuarios', [UserController::class, 'index'])->name('usuarios.index')->middleware('can:usuarios');
+Route::get('usuarios/consultar', [UserController::class, 'consultar'])->name('usuarios.consultar');
+Route::get('usuarios/eliminar/{id}', [UserController::class, 'destroy'])->name('usuarios.destroy');
 Route::get('roles', [RolController::class, 'index'])->name('roles.index')->middleware('can:roles');
 Route::get('permisos', [PermisoController::class, 'index'])->name('permisos.index')->middleware('can:permisos');
 Route::get('parametros', [ParametroController::class, 'index'])->name('parametros.index')->middleware('can:parametros');
