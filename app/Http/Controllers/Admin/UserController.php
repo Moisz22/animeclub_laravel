@@ -4,10 +4,12 @@ namespace App\Http\Controllers\admin;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
 use App\Models\Maintenance;
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -37,12 +39,11 @@ class UserController extends Controller
             {
                 $rol_temp = $name;
             }
-            $array_temp = ['<input type="checkbox">', $usuario->name, $usuario->email, $rol_temp, '<button class="btn btn-success" onclick="editar();"><i class="fa fa-pencil"></i></button> <button onclick="eliminar('.$usuario->id.');" class="btn btn-danger"><i class="fa fa-trash"></i></button>']; 
+            $array_temp = ['<input type="checkbox" value="'.$usuario->id.'">','<button class="btn btn-warning" data-toggle="modal" data-target="#modalUsuarios" onclick="mostrar('.$usuario->id.');"><i class="fa fa-pencil"></i></button> <button onclick="eliminar('.$usuario->id.');" class="btn btn-danger"><i class="fa fa-trash"></i></button>',$usuario->name, $usuario->email, $rol_temp]; 
             array_push($jsonfinal, $array_temp);
             
         }
         return response()->json(['data' => $jsonfinal]);
-
     }
 
     /**
@@ -52,7 +53,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -62,8 +63,31 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $validar = Validator::make(
+            $request->all(),
+            [
+                'nombre' => 'bail|required|min:3|max:255',
+                'email'  => 'bail|email|required|min:3|unique:users,email|max:255',
+                'rol'    => 'bail|required'
+            ]
+        );
+
+        if($validar->fails())
+        {
+            return response()->json(['sms' => $validar->errors()->all()]);
+        }
+
+        $usuario = User::create([
+            'name'  => $request->nombre,
+            'email' => $request->email,
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
+        ]);
+
+        $buscaRol = Role::find($request->rol);
+        $usuario->assignRole($buscaRol);
+
+        return response()->json(['sms' => 'ok']);
     }
 
     /**
@@ -74,7 +98,10 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $usuario = User::find($id);
+        $rol_id = Role::findByName($usuario->getRoleNames()[0])->id;
+        $usuario->rol_id = $rol_id;
+        return response()->json(['sms' => 'ok', 'data' => $usuario]);
     }
 
     /**
@@ -85,7 +112,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -97,7 +124,28 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validar = Validator::make(
+            $request->all(),
+            [
+                'nombre' => 'bail|required|min:3|max:255',
+                'email'  => 'bail|email|required|min:3|max:255',
+                'rol'    => 'bail|required'
+            ]
+        );
+
+        if($validar->fails())
+        {
+            return response()->json(['sms' => $validar->errors()->all()]);
+        }
+
+        $usuario = User::find($id);
+        $usuario->name = $request->nombre;
+        $usuario->email = $request->email;
+        $usuario->save();
+
+        $buscaRol = Role::find($request->rol);
+        $usuario->syncRoles([$buscaRol]);
+        return response()->json(['sms' => 'ok']);
     }
 
     /**
@@ -118,5 +166,25 @@ class UserController extends Controller
             return response()->json(['sms' => $e]);
         }
         
+    }
+
+    public function eliminarmas(Request $request)
+    {
+        $ids = json_decode($request->ids);
+        DB::beginTransaction();
+        try
+        {
+            foreach ($ids as $id)
+            {
+                DB::table('users')->where('id', $id)->delete();
+            }
+            DB::commit();
+            return response()->json(['sms' => 'ok']);
+        }
+        catch(Exception $e)
+        {
+            DB::rollBack();
+            return response()->json(['sms' => $e]);
+        }
     }
 }

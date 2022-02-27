@@ -10,10 +10,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('', [HomeController::class, 'index']);
 Route::get('generos', [GenderController::class, 'index'])->name('generos.index')->middleware('can:generos');
-Route::get('usuarios', [UserController::class, 'index'])->name('usuarios.index')->middleware('can:usuarios');
 Route::get('usuarios/consultar', [UserController::class, 'consultar'])->name('usuarios.consultar');
-Route::get('usuarios/eliminar/{id}', [UserController::class, 'destroy'])->name('usuarios.destroy');
-Route::get('roles', [RolController::class, 'index'])->name('roles.index')->middleware('can:roles');
+Route::post('usuarios/update/{id}', [UserController::class, 'update'])->name('usuarios.update');
+Route::post('usuarios/eliminar_mas', [UserController::class, 'eliminarmas'])->name('usuarios.eliminarmas');
+Route::resource('usuarios', UserController::class)->names('usuarios')->middleware('can:usuarios')->except(['update', 'delete']);
+Route::get('roles/consultar', [RolController::class, 'consultar'])->name('roles.consultar')->middleware('can:roles');
+Route::post('roles/update/{id}', [RolController::class, 'update'])->name('roles.update');
+Route::post('roles/eliminar_mas', [RolController::class, 'eliminarmas'])->name('roles.eliminarmas');
+Route::resource('roles', RolController::class)->names('roles')->middleware('can:roles')->except(['update']);
 Route::get('permisos', [PermisoController::class, 'index'])->name('permisos.index')->middleware('can:permisos');
 Route::get('parametros', [ParametroController::class, 'index'])->name('parametros.index')->middleware('can:parametros');
 

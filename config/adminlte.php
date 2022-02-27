@@ -168,7 +168,7 @@ return [
     */
 
     'right_sidebar' => false,
-    'right_sidebar_icon' => 'fa fa-cogs',
+    'right_sidebar_icon' => 'fas fa-cogs',
     'right_sidebar_theme' => 'dark',
     'right_sidebar_slide' => true,
     'right_sidebar_push' => true,
@@ -244,7 +244,7 @@ return [
         [
             'text'        => 'Animes',
             'url'         => 'animes',
-            'icon'        => 'fa fa-fw fa-ghost',
+            'icon'        => 'fas fa-fw fa-ghost',
             'label'       => 5,
             'label_color' => 'success',
             'active'      => ['', 'admin'],
@@ -253,23 +253,23 @@ return [
         [
             'text' => 'Seguridad',
             'url'  => 'admin/settings',
-            'icon' => 'fa fa-fw fa-lock',
+            'icon' => 'fas fa-fw fa-lock',
             'submenu' => [
                 [
                     'text' => 'Usuarios',
-                    'icon' => 'fa fa-fw fa-users',
+                    'icon' => 'fas fa-fw fa-users',
                     'url'  => 'admin/usuarios',
                     'can'  => 'usuarios',
                 ],
                 [
                     'text' => 'Roles',
-                    'icon' => 'fa fa-fw fa-user-tag',
+                    'icon' => 'fas fa-fw fa-user-tag',
                     'url'  => 'admin/roles',
                     'can'  => 'roles',
                 ],
                 [
                     'text' => 'Permisos',
-                    'icon' => 'fa fa-fw fa-user-shield',
+                    'icon' => 'fas fa-fw fa-user-shield',
                     'url'  => 'admin/permisos',
                     'can'  => 'permisos',
                 ]
@@ -277,54 +277,54 @@ return [
         ],
         [
             'text'    => 'Operativo',
-            'icon'    => 'fa fa-fw fa-cogs',
+            'icon'    => 'fas fa-fw fa-cogs',
             'submenu' => [
                 [
                     'text' => 'Animes',
                     'url'  => '#',
-                    'icon' => 'fa fa-fw fa-tv',
+                    'icon' => 'fas fa-fw fa-tv',
                     'can'  => 'animes',
                 ],
                 [
                     'text' => 'Ovas',
                     'url'  => '#',
-                    'icon' => 'fa fa-fw fa-video',
+                    'icon' => 'fas fa-fw fa-video',
                     'can'  => 'ovas',
                 ],
                 [
                     'text' => 'Peliculas',
                     'url'  => '#',
-                    'icon' => 'fa fa-fw fa-film',
+                    'icon' => 'fas fa-fw fa-film',
                     'can'  => 'peliculas',
                 ],
                 [
                     'text' => 'Mangas',
                     'url'  => '#',
-                    'icon' => 'fa fa-fw fa-swatchbook',
+                    'icon' => 'fas fa-fw fa-swatchbook',
                     'can'  => 'mangas',
                 ],
                 [
                     'text' => 'Novelas ligeras',
                     'url'  => '#',
-                    'icon' => 'fa fa-fw fa-book-reader',
+                    'icon' => 'fas fa-fw fa-book-reader',
                     'can'  => 'novelas_ligeras',
                 ],
             ]
         ],
         [
             'text'    => 'Mantenimiento',
-            'icon'    => 'fa fa-fw fa-tools',
+            'icon'    => 'fas fa-fw fa-tools',
             'submenu' => [
                 [
                     'text' => 'Generos',
                     'url'  => 'admin/generos',
-                    'icon' => 'fa fa-fw fa-file-video',
+                    'icon' => 'fas fa-fw fa-file-video',
                     'can'  => 'generos',
                 ],
                 [
                     'text' => 'Reseñas',
                     'url'  => '#',
-                    'icon' => 'fa fa-fw fa-comments',
+                    'icon' => 'fas fa-fw fa-comments',
                     'can'  => 'resenas',
                 ],
                 [
@@ -355,17 +355,17 @@ return [
         ],
         [
             'text'    => 'Parametros',
-            'icon'    => 'fa fa-fw fa-sliders-h',
+            'icon'    => 'fas fa-fw fa-sliders-h',
             'url'     => 'admin/parametros',
         ],
         [
             'text'    => 'Reportes',
-            'icon'    => 'fa fa-fw fa-tachometer-alt',
+            'icon'    => 'fas fa-fw fa-tachometer-alt',
             'submenu' => [
                 [
                     'text' => 'Progreso de animes',
                     'url'  => '#',
-                    'icon' => 'fa fa-fw fa-tasks',
+                    'icon' => 'fas fa-fw fa-tasks',
                     'can'  => 'progreso',
                 ]
             ]
@@ -418,43 +418,43 @@ return [
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables/js/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables/js/dataTables.bootstrap4.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css',
+                    'asset' => true,
+                    'location' => 'vendor/datatables/css/dataTables.bootstrap4.min.css',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/fixedheader/3.1.9/css/fixedHeader.bootstrap.min.css',
+                    'asset' => true,
+                    'location' => 'vendor/datatables/css/fixedHeader.bootstrap.min.css',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css',
+                    'asset' => true,
+                    'location' => 'vendor/datatables/css/responsive.bootstrap.min.css',
                 ],
-                [
+                /* [
                     'type' => 'js',
                     'asset' => false,
                     'location' => '//cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js',
+                ], */
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables/js/dataTables.responsive.min.js',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js',
-                ],
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap.min.js',
+                    'asset' => true,
+                    'location' => 'vendor/datatables/js/responsive.bootstrap.min.js',
                 ],
             ],
         ],
