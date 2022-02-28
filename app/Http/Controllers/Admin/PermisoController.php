@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class PermisoController extends Controller
 {
@@ -14,7 +15,8 @@ class PermisoController extends Controller
      */
     public function index()
     {
-        return view('admin.permisos.index');
+        $roles = Role::all();
+        return view('admin.permisos.index', compact('roles'));
     }
 
     /**
@@ -46,7 +48,20 @@ class PermisoController extends Controller
      */
     public function show($id)
     {
-        //
+        $permisos_rol = [];
+        $casilla_permisos = [];
+        $jsonfinal = [];
+        $rol = Role::find($id);
+        
+        if($rol != NULL)
+        {
+            for ($i=0; $i < sizeof($rol['permissions']); $i++)
+            { 
+                $permisos_rol[$i] = $rol['permissions'][$i]->name;
+                array_push($jsonfinal, [$permisos_rol[$i], 1]);
+            }
+        }
+        return response()->json(['data' =>$jsonfinal ]);
     }
 
     /**

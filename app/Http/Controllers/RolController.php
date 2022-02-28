@@ -44,7 +44,21 @@ class RolController extends Controller
             
         }
         return response()->json(['data' => $jsonfinal]);
-        
+    }
+
+    public function consultadata()
+    {
+        $roles = Role::all();
+        $jsonfinal = [];
+        $array_temp = [];
+        $rol_temp = '';
+        foreach ($roles as $rol)
+        {
+            $array_temp = [$rol->id,$rol->name]; 
+            array_push($jsonfinal, $array_temp);
+            
+        }
+        return response()->json(['data' => $jsonfinal]);
     }
 
     /**
@@ -58,13 +72,13 @@ class RolController extends Controller
         $validar = Validator::make(
             $request->all(),
             [
-                'nombre' => 'bail|required|min:1'
+                'nombre' => 'bail|required|min:1|unique:roles,name'
             ]
         );
 
         if($validar->fails())
         {
-            return response('hello world')->json(['sms' => $validar->errors()->all()]);
+            return response()->json(['sms' => $validar->errors()->all()]);
         }
 
         Role::create(['name' => $request->nombre]);
@@ -80,7 +94,7 @@ class RolController extends Controller
      */
     public function show($id)
     {
-        $rol = Role::findById($id);
+        $rol = Role::find($id);
         return response()->json(['data' => $rol]);
     }
 

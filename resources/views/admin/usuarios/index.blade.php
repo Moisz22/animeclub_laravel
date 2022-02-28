@@ -44,6 +44,11 @@
     
     @section('js')
         <script>
+
+            addEventListener('load', ()=>{
+                document.getElementById('crear_usuario').focus();
+            })
+
             $(document).ready( function(){
                 $('#rol_id').select2({
                     width: "100%",
@@ -51,9 +56,9 @@
                 });
             })
 
-
             document.getElementById('crear_usuario').addEventListener('click', ()=>{
 
+                $('#crear_usuario').tooltip('hide');
                 document.getElementById('guardar_usuario').classList.remove('btn-warning');
                 document.getElementById('guardar_usuario').classList.add('btn-success');
                 document.getElementById('guardar_usuario').setAttribute('edicion', 'false');

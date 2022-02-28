@@ -36,16 +36,16 @@
 
         document.getElementById('crear_rol').addEventListener('click', ()=>{
 
-        document.getElementById('guardar_rol').classList.remove('btn-warning');
-        document.getElementById('guardar_rol').classList.add('btn-success');
-        document.getElementById('guardar_rol').setAttribute('edicion', 'false');
-        document.getElementById('guardar_rol').textContent = "Guardar";
+            document.getElementById('guardar_rol').classList.remove('btn-warning');
+            document.getElementById('guardar_rol').classList.add('btn-success');
+            document.getElementById('guardar_rol').setAttribute('edicion', 'false');
+            document.getElementById('guardar_rol').textContent = "Guardar";
 
-        document.getElementById('nombre_rol').value = ""; 
-        document.getElementById('rol_id').selectedIndex = 0; 
-        setTimeout(() => {
-            document.getElementById('nombre_rol').focus();
-        }, 700);
+            document.getElementById('nombre_rol').value = ""; 
+            document.getElementById('rol_id').selectedIndex = 0; 
+            setTimeout(() => {
+                document.getElementById('nombre_rol').focus();
+            }, 700);
         })
 
         document.getElementById('check_all').addEventListener('click', ()=>{

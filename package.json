@@ -21,7 +21,8 @@
         "tailwindcss": "^2.2.19"
     },
     "dependencies": {
+        "@sweetalert2/theme-dark": "^5.0.10",
         "jquery": "^3.6.0",
-        "sweetalert2": "^11.4.0"
+        "sweetalert2": "^11.4.4"
     }
 }
