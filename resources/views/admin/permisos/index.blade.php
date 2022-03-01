@@ -12,30 +12,20 @@
 
 <div class="card card-primary card-outline">
     <div class="card-body">
+        <div class="row mb-2">
+            <button type="button" id="check_all" checked="false" class="btn btn-default mr-1" data-toggle1="tooltip" data-placement="top" title="Seleccionar todos"><img style="width: 30px; height:30px;" src="{{asset('iconos/checkall.png')}}" alt=""></button>
+            <button type="button" id="guardar_permisos" class="btn btn-default" data-toggle1="tooltip" data-placement="top" title="Guardar Permisos"><img style="width: 30px; height:30px;" src="{{asset('iconos/guardar.png')}}" alt=""></button>
+        </div>
         <div class="row">
-            {{-- <x-adminlte-button id="crear_rol" label="+" data-toggle="modal" data-target="#modalRoles" class="col-sm-2" theme="primary" icon="fas fa-user-tag"/> --}}
             <button type="button" id="crear_rol" class="btn btn-primary col-sm-1 col-2" data-toggle="modal" data-target="#ModalRoles" data-toggle1="tooltip" data-placement="top" title="Agregar Roles"><i class="fas fa-user-tag">+</i></button>
-            {{-- <x-adminlte-select name="rol" label-class="text-lightblue col-sm-2"
-                igroup-size="lg" id="rol">
-                <x-slot name="prependSlot">
-                    <div class="input-group-text col-sm-6 bg-gradient-info">
-                        <i class="fas fa-user-shield"></i>
-                    </div>
-                </x-slot>
-                <option>Seleccione rol</option>
-                @foreach ($roles as $rol)
-                    <option value="{{$rol->id}}">{{$rol->name}}</option>
-                @endforeach
-            </x-adminlte-select> --}}
             <div class="col-sm-11 col-10">
-                <select class="form-input" name="rol" id="rol">
+                <select class="form-input" onchange="cambio_rol();" name="rol" id="rol">
                     <option>Seleccione rol</option>
                     @foreach ($roles as $rol)
                         <option value="{{$rol->id}}">{{$rol->name}}</option>
                     @endforeach
                 </select>
             </div>
-            
         </div>
         
     </div>
@@ -47,7 +37,7 @@
         <table  id="datatable_permisos" class="table table-bordered table-striped no-wrap" style="width: 100%">
             <thead>
                 <tr>
-                    <th>Nombre Permiso</th>
+                    <th>Opcion</th>
                     <th>Permiso</th>
                 </tr>
             </thead>
@@ -69,8 +59,13 @@
             });
         })
 
+        setTimeout(() => {
+                document.getElementById('rol').focus();
+        }, 700);
+
         document.getElementById('crear_rol').addEventListener('click', ()=>{
 
+            $('#crear_rol').tooltip('hide');
             document.getElementById('guardar_rol').classList.remove('btn-warning');
             document.getElementById('guardar_rol').classList.add('btn-success');
             document.getElementById('guardar_rol').setAttribute('edicion', 'false');
@@ -123,31 +118,102 @@
             })
         })
 
-    function recargar_roles()
-    {
-        [...document.getElementById('rol').children].map( e => e.remove())
-
-        fetch('roles/consultadata', {
-            headers: {'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')}
-        })
-        .then(res => res.json())
-        .then(res => {
+        document.getElementById('check_all').addEventListener('click', ()=>{
             
-            console.log(res.data);
+            let total_columnas = $('#datatable_permisos').DataTable().rows().data().length;
+
+            if(document.getElementById('check_all').getAttribute('checked') == "false")
+            {
+                for(let i=0; i< total_columnas; i++)
+                {
+                    $('#datatable_permisos').DataTable().cell(i,1).nodes()[0].children[0].checked = true;
+                }
+                document.getElementById('check_all').setAttribute('checked', "true");
+            }
+            else
+            {
+                for(let i=0; i< total_columnas; i++)
+                {
+                    $('#datatable_permisos').DataTable().cell(i,1).nodes()[0].children[0].checked = false;
+                }
+                document.getElementById('check_all').setAttribute('checked', "false");
+            }
+            
         })
-    }
 
-    var buscar_id = 1;
+        document.getElementById('guardar_permisos').addEventListener('click', ()=>{
 
-    $(document).ready( function(){
+            let total_columnas = $('#datatable_permisos').DataTable().rows().data().length;
+            let array_enviar = [];
+            let datos = new FormData();
+            for(let i=0; i< total_columnas; i++)
+            {
+                if($('#datatable_permisos').DataTable().cell(i,1).nodes()[0].children[0].checked == true)
+                {
+                    array_enviar.push($('#datatable_permisos').DataTable().cell(i,0).data());
+                }
+            }
+
+            datos.append('permisos', JSON.stringify(array_enviar))
+            datos.append('rol_id', document.getElementById('rol').value)
+
+            fetch('permisos/update', {
+                headers: {'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')},
+                method: 'post',
+                body: datos
+            }).then(res => res.json())
+            .then(res => {
+
+                Swal.fire({
+                    title: 'Guardado',
+                    text: 'Permisos sincronizados con éxito',
+                    icon: 'success'
+                })
+                cambio_rol()
+            })
+
+        })
+
+        function recargar_roles()
+        {
+            [...document.getElementById('rol').children].map( e => e.remove())
+
+            fetch('roles/consultadata', {
+                headers: {'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').getAttribute('content')}
+            })
+            .then(res => res.json())
+            .then(res => {
+                
+                console.log(res.data);
+            })
+        }
+
+    
+        addEventListener('load', ()=>{
             $('#datatable_permisos').DataTable({ 
                 language: 
                 { 
                     url: '/json/datatables_spanish.json' 
                 },
                 responsive:true,
-                ajax: `permisos/${buscar_id}`
-            });
-        })
+            }); 
+        })    
+        
+
+
+    function cambio_rol()
+    {
+        let buscar_id = (document.getElementById('rol').value == "") ? 1 : document.getElementById('rol').value;
+        $('#datatable_permisos').DataTable().destroy();
+
+        $('#datatable_permisos').DataTable({ 
+            language: 
+            { 
+                url: '/json/datatables_spanish.json' 
+            },
+            responsive:true,
+            ajax: `permisos/${buscar_id}`
+        });
+    }
     </script>
 @stop

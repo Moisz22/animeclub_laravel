@@ -19,6 +19,7 @@ Route::get('roles/consultadata', [RolController::class, 'consultadata'])->name('
 Route::post('roles/update/{id}', [RolController::class, 'update'])->name('roles.update');
 Route::post('roles/eliminar_mas', [RolController::class, 'eliminarmas'])->name('roles.eliminarmas');
 Route::resource('roles', RolController::class)->names('roles')->middleware('can:roles')->except(['update']);
-Route::resource('permisos', PermisoController::class)->names('permisos')->middleware('can:permisos');
+Route::post('permisos/update', [PermisoController::class, 'update'])->name('permisos.update')->middleware('can:permisos');
+Route::resource('permisos', PermisoController::class)->names('permisos')->middleware('can:permisos')->except(['update']);
 Route::get('parametros', [ParametroController::class, 'index'])->name('parametros.index')->middleware('can:parametros');
 

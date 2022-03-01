@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class PermisoController extends Controller
@@ -49,19 +50,24 @@ class PermisoController extends Controller
     public function show($id)
     {
         $permisos_rol = [];
-        $casilla_permisos = [];
         $jsonfinal = [];
         $rol = Role::find($id);
+        $permisos = Permission::all();
         
         if($rol != NULL)
         {
             for ($i=0; $i < sizeof($rol['permissions']); $i++)
             { 
                 $permisos_rol[$i] = $rol['permissions'][$i]->name;
-                array_push($jsonfinal, [$permisos_rol[$i], 1]);
+                array_push($jsonfinal, $permisos_rol[$i]);
+            }
+            
+            foreach ($permisos as $j=>$permiso)
+            {
+                $jsonfinal[$j] = (in_array($permiso->name, $permisos_rol)) ? [$permiso->name, '<input type="checkbox" checked>'] : [$permiso->name, '<input type="checkbox">'];
             }
         }
-        return response()->json(['data' =>$jsonfinal ]);
+        return response()->json(['data' =>$jsonfinal]);
     }
 
     /**
@@ -72,7 +78,7 @@ class PermisoController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -82,9 +88,13 @@ class PermisoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $permisos = json_decode($request->permisos);
+        $rol = Role::findById($request->rol_id);
+        $rol->syncPermissions($permisos);
+
+        return response()->json(['sms' => 'ok']);
     }
 
     /**

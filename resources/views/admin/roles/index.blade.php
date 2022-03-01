@@ -34,8 +34,13 @@
 @section('js')
     <script>
 
+        addEventListener('load', ()=>{
+            document.getElementById('crear_rol').focus();
+        })  
+
         document.getElementById('crear_rol').addEventListener('click', ()=>{
 
+            $('#crear_rol').tooltip('hide');
             document.getElementById('guardar_rol').classList.remove('btn-warning');
             document.getElementById('guardar_rol').classList.add('btn-success');
             document.getElementById('guardar_rol').setAttribute('edicion', 'false');
