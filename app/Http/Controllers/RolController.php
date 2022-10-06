@@ -26,10 +26,6 @@ class RolController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
 
     public function consultar()
     {
@@ -104,10 +100,6 @@ class RolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

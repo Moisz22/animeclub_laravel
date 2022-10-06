@@ -254,6 +254,7 @@ return [
             'text' => 'Seguridad',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
+            'can' => ['usuarios', 'roles', 'permisos'],
             'submenu' => [
                 [
                     'text' => 'Usuarios',
@@ -278,6 +279,7 @@ return [
         [
             'text'    => 'Operativo',
             'icon'    => 'fas fa-fw fa-cogs',
+            'animes' => ['animes', 'ovas', 'peliculas', 'mangas', 'novelas_ligeras'],
             'submenu' => [
                 [
                     'text' => 'Animes',

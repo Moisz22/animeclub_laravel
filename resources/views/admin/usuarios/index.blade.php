@@ -149,8 +149,8 @@
                             {
                                 Swal.fire
                                 (
-                                    'Deleted!',
-                                    'Your file has been deleted.',
+                                    'Borrado!',
+                                    'Los usuarios han sido eliminados con éxito.',
                                     'success'
                                 )
                                 $('#datatable_usuarios').DataTable().ajax.reload();
@@ -192,7 +192,7 @@
                             Swal.fire
                             (
                                 'Actualizado!',
-                                'Actualizaste con exito al usuario.',
+                                'Actualizaste con éxito al usuario.',
                                 'success'
                             )
                             $('#datatable_usuarios').DataTable().ajax.reload();
@@ -222,7 +222,7 @@
                         Swal.fire
                         (
                             'Agregado!',
-                            'Agregaste con exito al usuario.',
+                            'Agregaste con éxito al usuario.',
                             'success'
                         )
                         $('#datatable_usuarios').DataTable().ajax.reload();
@@ -291,8 +291,8 @@
                             if(res.sms == 'ok')
                             {
                                 Swal.fire(
-                                    'Deleted!',
-                                    'Your file has been deleted.',
+                                    'Borrado!',
+                                    'El usuario ha sido eliminado con éxito.',
                                     'success'
                                 )
                                 $('#datatable_usuarios').DataTable().ajax.reload();

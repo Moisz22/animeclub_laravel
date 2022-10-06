@@ -183,8 +183,15 @@
             })
             .then(res => res.json())
             .then(res => {
+                for (const rol in res.data)
+                {
+                    let option = document.createElement('option');
+                    option.textContent = res.data[rol][1];
+                    option.value = res.data[rol][0];
+
+                    document.getElementById('rol').append(option);
+                }
                 
-                console.log(res.data);
             })
         }
 
