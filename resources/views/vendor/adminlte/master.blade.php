@@ -84,14 +84,14 @@
         <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-        <script>
+        {{-- <script>
             if(sessionStorage.getItem('modo_noche') == "true")
             {
                 document.getElementById('modo_noche').setAttribute('src', '{{asset("iconos/sol.png")}}')
                 document.querySelector('body').classList.add('dark-mode');
                 sessionStorage.setItem('modo_noche', 'true');
             }
-        </script>
+        </script> --}}
         {{-- Javascript global --}}
         <script>
             $(function()
@@ -99,7 +99,7 @@
                 $('[data-toggle1="tooltip"]').tooltip()
             })
 
-            document.getElementById('modo_noche').addEventListener('click', ()=>{
+            /* document.getElementById('modo_noche').addEventListener('click', ()=>{
 
                 if(sessionStorage.getItem('modo_noche') == null)
                 {
@@ -121,7 +121,7 @@
                     document.querySelector('body').classList.remove('dark-mode');
                     sessionStorage.setItem('modo_noche', 'false');
                 }
-            })
+            }) */
         </script>
 
         {{-- Configured Scripts --}}

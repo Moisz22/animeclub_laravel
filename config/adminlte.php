@@ -242,6 +242,12 @@ return [
             'text' => 'search',
         ], */
         [
+            'type'         => 'darkmode-widget',
+            'topnav_right' => true, // Or "topnav => true" to place on the left.
+            'icon_disabled' => 'fa-sun fas',
+            'color_disabled' => 'warning',
+        ],
+        [
             'text'        => 'Animes',
             'url'         => 'animes',
             'icon'        => 'fas fa-fw fa-ghost',
@@ -329,7 +335,7 @@ return [
                     'icon' => 'fas fa-fw fa-comments',
                     'can'  => 'resenas',
                 ],
-                [
+                /* [
                     'text'    => 'level_one',
                     'url'     => '#',
                     'submenu' => [
@@ -352,7 +358,7 @@ return [
                             ],
                         ],
                     ],
-                ],
+                ], */
             ],
         ],
         [
@@ -481,12 +487,12 @@ return [
             ],
         ],
         'Chartjs' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
+                    'asset' => true,
+                    'location' => 'vendor/chartjs/chart.min.js',
                 ],
             ],
         ],

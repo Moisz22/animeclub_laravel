@@ -47,16 +47,6 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -102,17 +92,6 @@ class UserController extends Controller
         $rol_id = Role::findByName($usuario->getRoleNames()[0])->id;
         $usuario->rol_id = $rol_id;
         return response()->json(['sms' => 'ok', 'data' => $usuario]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        
     }
 
     /**

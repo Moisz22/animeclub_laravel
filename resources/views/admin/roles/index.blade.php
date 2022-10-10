@@ -129,8 +129,8 @@
                         {
                             Swal.fire
                             (
-                                'Deleted!',
-                                'Your file has been deleted.',
+                                'Borrado!',
+                                'Los roles han sido eliminados con éxito.',
                                 'success'
                             )
                             $('#datatable_roles').DataTable().ajax.reload();
@@ -172,7 +172,7 @@
                         Swal.fire
                         (
                             'Actualizado!',
-                            'Actualizaste con exito el rol.',
+                            'Actualizaste con éxito el rol.',
                             'success'
                         )
                         $('#datatable_roles').DataTable().ajax.reload();
@@ -202,7 +202,7 @@
                     Swal.fire
                     (
                         'Agregado!',
-                        'Agregaste con exito el rol.',
+                        'Agregaste con éxito el rol.',
                         'success'
                     )
                     $('#datatable_roles').DataTable().ajax.reload();
@@ -267,7 +267,7 @@
                         {
                             Swal.fire(
                                 'Deleted!',
-                                'Your file has been deleted.',
+                                'El rol ha sido eliminado con éxito.',
                                 'success'
                             )
                             $('#datatable_roles').DataTable().ajax.reload();

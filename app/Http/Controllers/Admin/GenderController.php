@@ -5,6 +5,9 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Gender;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
+use Exception;
 
 class GenderController extends Controller
 {
@@ -18,14 +21,32 @@ class GenderController extends Controller
         return view('admin.generos.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function consultar()
     {
+        $generos = Gender::all();
+        $jsonfinal = [];
+        $array_temp = [];
+        foreach ($generos as $genero)
+        {
+            $array_temp = ['<input type="checkbox" value="'.$genero->id.'">','<button class="btn btn-warning" data-toggle="modal" data-target="#modalGeneros" onclick="mostrar('.$genero->id.');"><i class="fa fa-pencil"></i></button> <button onclick="eliminar('."'$genero->id'".');" class="btn btn-danger"><i class="fa fa-trash"></i></button>',$genero->name]; 
+            array_push($jsonfinal, $array_temp);
+            
+        }
+        return response()->json(['data' => $jsonfinal]);
+    }
 
+    public function consultadata()
+    {
+        $generos = Gender::all();
+        $jsonfinal = [];
+        $array_temp = [];
+        foreach ($generos as $genero)
+        {
+            $array_temp = [$genero->id,$genero->nombre]; 
+            array_push($jsonfinal, $array_temp);
+            
+        }
+        return response()->json(['data' => $jsonfinal]);
     }
 
     /**
@@ -36,15 +57,21 @@ class GenderController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'genero_nombre' => 'required|min:4|max:100|unique:genders,nombre'
-        ]);
+        $validar = Validator::make(
+            $request->all(),
+            [
+                'nombre' => 'bail|required|min:1|max:100|unique:genders,name'
+            ]
+        );
 
-        $genero = new Gender;
-        $genero->nombre = $request->input('genero_nombre');
-        $genero->save();
+        if($validar->fails())
+        {
+            return response()->json(['sms' => $validar->errors()->all()]);
+        }
 
-        return redirect()->route('generos.index')->with('message', 'Genero creado correctamente');
+        Gender::create(['name' => $request->nombre]);
+
+        return response()->json(['sms' => 'ok']);
     }
 
     /**
@@ -55,18 +82,7 @@ class GenderController extends Controller
      */
     public function show(Gender $genero)
     {
-        return response()->array($genero)->toJson();
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *p
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Gender $genero)
-    {
-        
+        return response()->json(['data' => $genero]);
     }
 
     /**
@@ -76,16 +92,25 @@ class GenderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Gender $genero)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'genero_nombre' => 'required|min:4|max:100'
-        ]);
-        
-        $generos = Gender::all();
-        $genero->nombre = $request->input('genero_nombre');
-        $genero->save();
-        return redirect()->route('generos.index')->with('message', 'Genero actualizado correctamente');
+        $validar = Validator::make(
+            $request->all(),
+            [
+                'nombre' => 'bail|required|min:1|max:100|unique:genders,name'
+            ]
+        );
+
+        if($validar->fails())
+        {
+            return response()->json(['sms' => $validar->errors()->all()]);
+        }
+
+        $rol = Gender::find($id);
+        $rol->name = $request->nombre;
+        $rol->save();
+
+        return response()->json(['sms' => 'ok']);
     }
 
     /**
@@ -96,7 +121,34 @@ class GenderController extends Controller
      */
     public function destroy(Gender $genero)
     {
-        $genero->delete();
-        return redirect()->route('generos.index')->with('message', 'Genero eliminado correctamente');
+        try
+        {
+            $genero->delete();
+            return response()->json(['sms' => 'ok']);
+        }
+        catch(Exception $e)
+        {
+            return response()->json(['sms' => $e]);
+        }
+    }
+
+    public function eliminarmas(Request $request)
+    {
+        $ids = json_decode($request->ids);
+        DB::beginTransaction();
+        try
+        {
+            foreach ($ids as $id)
+            {
+                DB::table('genders')->where('id', $id)->delete();
+            }
+            DB::commit();
+            return response()->json(['sms' => 'ok']);
+        }
+        catch(Exception $e)
+        {
+            DB::rollBack();
+            return response()->json(['sms' => $e]);
+        }
     }
 }

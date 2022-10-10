@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\AnimeController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Prueba;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Auth::routes();
+
 Route::get('/',[AnimeController::class, 'index']); /* ->middleware(['auth:sanctum', 'verified']) */;
 
 /* Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -21,3 +26,7 @@ Route::get('/',[AnimeController::class, 'index']); /* ->middleware(['auth:sanctu
 })->name('dashboard'); */
 
 Route::resource('animes', AnimeController::class)->only('index');
+
+/* Route::get('correo', function(){
+    Mail::to('payasohackero96@gmail.com')->send(new Prueba);
+}); */

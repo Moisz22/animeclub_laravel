@@ -12,7 +12,7 @@
     @php( $profile_url = $profile_url ? url($profile_url) : '' )
     @php( $logout_url = $logout_url ? url($logout_url) : '' )
 @endif
-<li class="nav-link"><a href="#"><img class="user-image img-circle elevation-2" id="modo_noche" style="width: 30px; height:30px;" src="{{asset('iconos/luna.png')}}" alt=""></a></li>
+{{-- <li class="nav-link"><a href="#"><img class="user-image img-circle elevation-2" id="modo_noche" style="width: 30px; height:30px;" src="{{asset('iconos/luna.png')}}" alt=""></a></li> --}}
 <li class="nav-item dropdown user-menu">
     {{-- User menu toggler --}}
     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">

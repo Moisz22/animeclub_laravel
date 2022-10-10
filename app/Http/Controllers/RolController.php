@@ -110,6 +110,18 @@ class RolController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validar = Validator::make(
+            $request->all(),
+            [
+                'nombre' => 'bail|required|min:1|unique:roles,name'
+            ]
+        );
+
+        if($validar->fails())
+        {
+            return response()->json(['sms' => $validar->errors()->all()]);
+        }
+
         $rol = Role::find($id);
         $rol->name = $request->nombre;
         $rol->save();
