@@ -27,3 +27,7 @@ Route::post('permisos/update', [PermisoController::class, 'update'])->name('perm
 Route::resource('permisos', PermisoController::class)->names('permisos')->middleware('can:permisos')->except(['update', 'create']);
 Route::get('parametros', [ParametroController::class, 'index'])->name('parametros.index')->middleware('can:parametros');
 
+Route::get('notifications/get',[App\Http\Controllers\NotificationController::class, 'getNotificationsData'])->name('notifications.get');
+Route::get('notifications/show',[App\Http\Controllers\NotificationController::class, 'index'])->name('notifications.index');
+Route::get('notifications/marcar_todas',[App\Http\Controllers\NotificationController::class, 'marcar_todas'])->name('notifications.marcartodas');
+Route::get('notifications/consultadata', [App\Http\Controllers\NotificationController::class, 'consultadata'])->name('notifications.consultadata');

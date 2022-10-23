@@ -4,6 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\UrlGenerator;
+use App\Observers\UserObserver;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
+use App\Observers\RoleObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,8 +30,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(UrlGenerator $url)
     {
-        if (env('REDIRECT_HTTPS')) {
+        if (env('REDIRECT_HTTPS'))
+        {
             $url->formatScheme('https://');
         }
+
+        User::observe(UserObserver::class);
+        Role::observe(RoleObserver::class);
     }
 }

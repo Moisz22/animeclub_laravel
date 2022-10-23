@@ -3,7 +3,7 @@
 @section('title', 'Permisos')
 
 @section('content_header')
-    <h1 class="text-center">Permisos</h1>
+    <h1 class="text-center"><b>Permisos</b></h1>
 @stop
 
 @section('plugins.Select2', true)
@@ -20,7 +20,7 @@
             <button type="button" id="crear_rol" class="btn btn-primary col-sm-1 col-2" data-toggle="modal" data-target="#ModalRoles" data-toggle1="tooltip" data-placement="top" title="Agregar Roles"><i class="fas fa-user-tag">+</i></button>
             <div class="col-sm-11 col-10">
                 <select class="form-input" onchange="cambio_rol();" name="rol" id="rol">
-                    <option>Seleccione rol</option>
+                    <option value="">Seleccione rol</option>
                     @foreach ($roles as $rol)
                         <option value="{{$rol->id}}">{{$rol->name}}</option>
                     @endforeach
@@ -210,7 +210,7 @@
 
     function cambio_rol()
     {
-        let buscar_id = (document.getElementById('rol').value == "") ? 1 : document.getElementById('rol').value;
+        let buscar_id = (document.getElementById('rol').value == "") ? 0 : document.getElementById('rol').value;
         $('#datatable_permisos').DataTable().destroy();
 
         $('#datatable_permisos').DataTable({ 

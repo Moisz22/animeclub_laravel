@@ -248,6 +248,22 @@ return [
             'color_disabled' => 'warning',
         ],
         [
+            'type'         => 'navbar-notification',
+            'id'           => 'my-notification',      // An ID attribute (required).
+            'icon'         => 'fas fa-bell',          // A font awesome icon (required).
+            'icon_color'   => 'warning',              // The initial icon color (optional).
+            'label'        => 0,                      // The initial label for the badge (optional).
+            'label_color'  => 'danger',               // The initial badge color (optional).
+            'url'          => 'admin/notifications/show',   // The url to access all notifications/elements (required).
+            'topnav_right' => true,                   // Or "topnav => true" to place on the left (required).
+            'dropdown_mode'   => true,                // Enables the dropdown mode (optional).
+            'dropdown_flabel' => 'Mostrar todas', // The label for the dropdown footer link (optional).
+            'update_cfg'   => [
+                'url' => 'admin/notifications/get',         // The url to periodically fetch new data (optional).
+                'period' => 10,                       // The update period for get new data (in seconds, optional).
+            ],
+        ],
+        [
             'text'        => 'Animes',
             'url'         => 'animes',
             'icon'        => 'fas fa-fw fa-ghost',
@@ -329,11 +345,16 @@ return [
                     'icon' => 'fas fa-fw fa-file-video',
                     'can'  => 'generos',
                 ],
-                [
+                /* [
                     'text' => 'Reseñas',
                     'url'  => '#',
                     'icon' => 'fas fa-fw fa-comments',
                     'can'  => 'resenas',
+                ], */
+                [
+                    'text' => 'Notificaciones',
+                    'url'  => 'admin/notificaciones',
+                    'icon' => 'fas fa-fw fa-bell',
                 ],
                 /* [
                     'text'    => 'level_one',
@@ -361,12 +382,12 @@ return [
                 ], */
             ],
         ],
-        [
+        /* [
             'text'    => 'Parametros',
             'icon'    => 'fas fa-fw fa-sliders-h',
             'url'     => 'admin/parametros',
-        ],
-        [
+        ], */
+        /* [
             'text'    => 'Reportes',
             'icon'    => 'fas fa-fw fa-tachometer-alt',
             'submenu' => [
@@ -377,13 +398,13 @@ return [
                     'can'  => 'progreso',
                 ]
             ]
-        ],
-        ['header' => 'labels'],
+        ], */
+        /* ['header' => 'labels'],
         [
             'text'       => 'important',
             'icon_color' => 'red',
             'url'        => '#',
-        ],
+        ], */
     ],
 
     /*

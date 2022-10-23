@@ -3,19 +3,10 @@
 @section('title', 'Usuarios')
 
 @section('content_header')
-    <h1 class="text-center">Usuarios</h1>
+    <h1 class="text-center"><b>Usuarios</b></h1>
 @stop
 
 @section('plugins.Select2', true)
-{{-- @section('content')
-    <br>
-    <br>
-    <livewire:tabla-usuarios/>
-@stop
-
-@section('js')
-    @livewireScripts
-@stop --}}
 
 @section('content')
     <div class="card card-primary card-outline">

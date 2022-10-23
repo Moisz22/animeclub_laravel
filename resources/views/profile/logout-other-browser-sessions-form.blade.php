@@ -8,11 +8,11 @@
     </x-slot>
 
     <x-slot name="content">
-        <div class="max-w-xl text-sm text-gray-600">
+        {{-- <div class="max-w-xl text-sm text-gray-600">
             {{ __('Algunas de sus sesiones recientes se enumeran a continuación; sin embargo, esta lista puede no ser exhaustiva. Si cree que su cuenta se ha visto comprometida, debe actualizar su contraseña.') }}
-        </div>
+        </div> --}}
 
-        @if (count($this->sessions) > 0)
+        {{-- @if (count($this->sessions) > 0)
             <div class="mt-5 space-y-6">
                 <!-- Other Browser Sessions -->
                 @foreach ($this->sessions as $session)
@@ -49,7 +49,7 @@
                     </div>
                 @endforeach
             </div>
-        @endif
+        @endif --}}
 
         {{-- <div class="flex items-center mt-5">
             <x-jet-button wire:click="confirmLogout" wire:loading.attr="disabled">
