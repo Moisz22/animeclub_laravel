@@ -8,6 +8,8 @@ use App\Observers\UserObserver;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use App\Observers\RoleObserver;
+use App\Models\Gender;
+use App\Observers\GenderObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -37,5 +39,6 @@ class AppServiceProvider extends ServiceProvider
 
         User::observe(UserObserver::class);
         Role::observe(RoleObserver::class);
+        Gender::observe(GenderObserver::class);
     }
 }

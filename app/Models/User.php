@@ -31,6 +31,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'profile_photo_path'
     ];
 
     /**
@@ -65,7 +66,7 @@ class User extends Authenticatable
 
     public function adminlte_image()
     {
-        return $this->profile_photo_path;
+        return asset('img/avatars/') .'/'. $this->profile_photo_path;
     }
 
     public function adminlte_profile_url()

@@ -266,7 +266,7 @@
                         if(res.sms == 'ok')
                         {
                             Swal.fire(
-                                'Deleted!',
+                                'Borrado!',
                                 'El rol ha sido eliminado con éxito.',
                                 'success'
                             )

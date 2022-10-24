@@ -17,11 +17,12 @@ class RoleObserver
      */
     public function created(Role $role)
     {
-        $accion = 'El usuario con id:'.Auth::id().' creó el rol '.$role->name;
+        $accion = 'El usuario: '.Auth::user()->name.' creó el rol: '.$role->name;
         DB::table('audit')->insert([
             'user_id' => Auth::id(),
             'tabla' => 'role',
             'accion' => $accion,
+            'metodo' => 'create',
             'visto' => false,
             'created_at' => Carbon::now()
         ]);
@@ -35,11 +36,12 @@ class RoleObserver
      */
     public function updated(Role $role)
     {
-        $accion = 'El usuario con id:'.Auth::id().' actualizó el rol '.$role->name;
+        $accion = 'El usuario: '.Auth::user()->name.' actualizó el rol: '.$role->name;
         DB::table('audit')->insert([
             'user_id' => Auth::id(),
             'tabla' => 'role',
             'accion' => $accion,
+            'metodo' => 'update',
             'visto' => false,
             'created_at' => Carbon::now()
         ]);
@@ -53,11 +55,12 @@ class RoleObserver
      */
     public function deleted(Role $role)
     {
-        $accion = 'El usuario con id:'.Auth::id().' eliminó el rol '.$role->name;
+        $accion = 'El usuario: '.Auth::user()->name.' eliminó el rol: '.$role->name;
         DB::table('audit')->insert([
             'user_id' => Auth::id(),
             'tabla' => 'role',
             'accion' => $accion,
+            'metodo' => 'delete',
             'visto' => false,
             'created_at' => Carbon::now()
         ]);

@@ -48,7 +48,7 @@ class UserAdminSeeder extends Seeder
         $user->name = 'Moises Suarez';
         $user->email = 'moises@gmail.com';
         $user->password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
-        $user->profile_photo_path = 'https://i.pinimg.com/originals/85/1d/19/851d19e760123bf7c1d7c82bb7c93ca3.png';
+        $user->profile_photo_path = 'default.png';
         $user->save();
 
         $user->assignRole($rol);

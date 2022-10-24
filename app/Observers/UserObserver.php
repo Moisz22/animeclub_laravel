@@ -17,11 +17,12 @@ class UserObserver
      */
     public function created(User $user)
     {
-        $accion = 'El usuario con id:'.Auth::id().' creó a '.$user->name;
+        $accion = 'El usuario: '.Auth::user()->name.' creó al usuario: '.$user->name;
         DB::table('audit')->insert([
             'user_id' => Auth::id(),
             'tabla' => 'usuarios',
             'accion' => $accion,
+            'metodo' => 'create',
             'visto' => false,
             'created_at' => Carbon::now()
         ]);
@@ -35,11 +36,12 @@ class UserObserver
      */
     public function updated(User $user)
     {
-        $accion = 'El usuario con id:'.Auth::id().' actualizó a '.$user->name;
+        $accion = 'El usuario: '.Auth::user()->name.' actualizó al usuario: '.$user->name;
         DB::table('audit')->insert([
             'user_id' => Auth::id(),
             'tabla' => 'usuarios',
             'accion' => $accion,
+            'metodo' => 'update',
             'visto' => false,
             'created_at' => Carbon::now()
         ]);
@@ -53,11 +55,12 @@ class UserObserver
      */
     public function deleted(User $user)
     {
-        $accion = 'El usuario con id:'.Auth::id().' eliminó a '.$user->name;
+        $accion = 'El usuario: '.Auth::user()->name.' eliminó al usuario: '.$user->name;
         DB::table('audit')->insert([
             'user_id' => Auth::id(),
             'tabla' => 'usuarios',
             'accion' => $accion,
+            'metodo' => 'delete',
             'visto' => false,
             'created_at' => Carbon::now()
         ]);
@@ -71,11 +74,12 @@ class UserObserver
      */
     public function restored(User $user)
     {
-        $accion = 'El usuario con id:'.Auth::id().' restauró a '.$user->name;
+        $accion = 'El usuario: '.Auth::user()->name.' restauró al usuario: '.$user->name;
         DB::table('audit')->insert([
             'user_id' => Auth::id(),
             'tabla' => 'usuarios',
             'accion' => $accion,
+            'metodo' => 'restore',
             'visto' => false,
             'created_at' => Carbon::now()
         ]);
@@ -89,11 +93,12 @@ class UserObserver
      */
     public function forceDeleted(User $user)
     {
-        $accion = 'El usuario con id:'.Auth::id().' eliminó físicamente a '.$user->name;
+        $accion = 'El usuario: '.Auth::user()->name.' eliminó físicamente al usuario: '.$user->name;
         DB::table('audit')->insert([
             'user_id' => Auth::id(),
             'tabla' => 'usuarios',
             'accion' => $accion,
+            'metodo' => 'forcedelete',
             'visto' => false,
             'created_at' => Carbon::now()
         ]);

@@ -5,11 +5,12 @@ use Spatie\Permission\Models\Role;
 use App\Models\User;
 use App\Models\Maintenance;
 use Illuminate\Support\Facades\DB;
-
 use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 class UserController extends Controller
 {
@@ -71,7 +72,8 @@ class UserController extends Controller
         $usuario = User::create([
             'name'  => $request->nombre,
             'email' => $request->email,
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            'profile_photo_path' => 'default.png'
         ]);
 
         $buscaRol = Role::find($request->rol);
@@ -157,6 +159,17 @@ class UserController extends Controller
             {
                 DB::table('users')->where('id', $id)->delete();
             }
+
+            $accion = 'El usuario: '.Auth::user()->name.' eliminó a '. count($ids) .' usuarios';
+            DB::table('audit')->insert([
+                'user_id' => Auth::id(),
+                'tabla' => 'usuarios',
+                'accion' => $accion,
+                'metodo' => 'eliminarmas',
+                'visto' => false,
+                'created_at' => Carbon::now()
+            ]);
+
             DB::commit();
             return response()->json(['sms' => 'ok']);
         }

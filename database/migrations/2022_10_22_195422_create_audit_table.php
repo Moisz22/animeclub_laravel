@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('user_id');
             $table->string('accion');
             $table->string('tabla');
+            $table->string('metodo', 20);
             $table->boolean('visto');
             $table->timestamps();
         });

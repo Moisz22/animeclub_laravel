@@ -9,6 +9,7 @@
             cursor: pointer;
             background: rgb(206, 223, 228);
         }
+
     </style>
 @stop
 
@@ -39,6 +40,7 @@
                             <thead class="d-none">
                                 <tr>
                                     <th>ID</th>
+                                    <th>Método</th>
                                     <th>User</th>
                                     <th>Accion</th>
                                     <th>tabla</th>
@@ -81,13 +83,14 @@
                     visible: false,
                 },
                 {
-                    targets: [3],
-                    visible: false,
-                },
-                {
                     targets: [4],
                     visible: false,
                 },
+                {
+                    targets: [5],
+                    visible: false,
+                },
+                
             ],  
             info:false,
             language: 
@@ -101,7 +104,6 @@
         document.getElementById('marcar_todas').addEventListener('click', ()=>{
             
             eliminarcampana();
-            /* let registros = $('#datatable_notificaciones').DataTable().data().length */
 
             fetch('../notifications/marcar_todas')
             .then(res => res.json())
@@ -109,12 +111,6 @@
 
                 if(res.sms == 'ok')
                 {
-                    /* for (let i = 0; i < registros ; i++)
-                    {
-                        $('#datatable_notificaciones').DataTable().cell(i,5).data('');
-                    }
-
-                    $('#datatable_notificaciones').DataTable().draw(); */
                     $('#datatable_notificaciones').DataTable().ajax.reload();
                     
                 }
@@ -162,10 +158,6 @@
                 document.getElementById('campana').append(imagen);
                 document.getElementById('campana').append(p);
             }
-            /* else
-            {
-                document.getElementById('campana').children.length > 0
-            } */
 
         })
 
@@ -179,17 +171,12 @@
 
         document.getElementById('mostrar_todas').addEventListener('click', ()=>{
 
+            eliminarcampana();
             $('#datatable_notificaciones').DataTable().ajax.reload();
-            /* let registros = $('#datatable_notificaciones').DataTable().data().length
-
-            for (let i = 0; i < registros ; i++)
-            {
-                $('#datatable_notificaciones').DataTable().row(i).node().classList.remove('d-none');
-            }
-
-            $('#datatable_notificaciones').DataTable().draw(); */
 
         })
+
+        /* $('#datatable_notificaciones tbody') */
 
     </script>
     
