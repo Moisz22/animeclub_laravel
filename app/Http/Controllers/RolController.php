@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 class RolController extends Controller
 {
@@ -170,6 +172,17 @@ class RolController extends Controller
                     $todos_eliminados = false;
                 }
             }
+            
+            $accion = 'El usuario: '.Auth::user()->name.' eliminó a '. count($ids) .' roles';
+            DB::table('audit')->insert([
+                'user_id' => Auth::id(),
+                'tabla' => 'role',
+                'accion' => $accion,
+                'metodo' => 'eliminarmas',
+                'visto' => false,
+                'created_at' => Carbon::now()
+            ]);
+
             DB::commit();
 
             if($todos_eliminados)

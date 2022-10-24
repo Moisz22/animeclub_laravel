@@ -139,20 +139,23 @@
                             if(res.sms == 'ok')
                             {
                                 Swal.fire
-                                (
-                                    'Borrado!',
-                                    'Los usuarios han sido eliminados con éxito.',
-                                    'success'
-                                )
+                                ({
+                                    title: 'Borrado!',
+                                    text: 'Los usuarios han sido eliminados con éxito.',
+                                    icon: 'success',
+                                    timer: 900,
+                                })
                                 $('#datatable_usuarios').DataTable().ajax.reload();
                             }
                             else
                             {
-                                Swal.fire(
-                                    'Error!',
-                                    res,
-                                    'error'
-                                )
+                                Swal.fire
+                                ({
+                                    title: 'Error!',
+                                    text: 'Ocurrió un problema al eliminar a los usuarios.',
+                                    icon: 'error',
+                                    timer: 900,
+                                })
                             }
                         })
                         
@@ -181,20 +184,23 @@
                         if(res.sms=='ok')
                         {
                             Swal.fire
-                            (
-                                'Actualizado!',
-                                'Actualizaste con éxito al usuario.',
-                                'success'
-                            )
+                            ({
+                                title: 'Actualizado!',
+                                text: 'Actualizaste con éxito al usuario.',
+                                icon: 'success',
+                                timer: 900,
+                            })
                             $('#datatable_usuarios').DataTable().ajax.reload();
                             document.getElementById('user_id').value = "";
                         }
                         else
                         {
-                            Swal.fire({
-                                title:'Error!',
-                                text: res.sms,
-                                icon: 'error'
+                            Swal.fire
+                            ({
+                                title: 'Error!',
+                                text: 'Hubo un problema al actualizar.',
+                                icon: 'error',
+                                timer: 900,
                             })
                         }
                     })

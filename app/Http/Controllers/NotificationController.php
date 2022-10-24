@@ -42,6 +42,14 @@ class NotificationController extends Controller
         return view('admin.notificaciones.index', compact('notificaciones'));
     }
 
+    public function marcarNotificacionLeida(Request $request)
+    {
+        DB::table('audit')->where('id', $request->id)->update([
+            'visto' => true
+        ]);
+        return response()->json(['sms' => 'ok']);
+    }
+
     public function consultadata()
     {
         $notificaciones = DB::table('audit')->orderBy('visto')->orderBy('created_at','desc')->limit(20)->get();

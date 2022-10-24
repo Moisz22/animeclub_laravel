@@ -128,7 +128,7 @@
                         {
                             Swal.fire
                             (
-                                'Deleted!',
+                                'Borrado!',
                                 'Los generos han sido eliminados con éxito.',
                                 'success'
                             )

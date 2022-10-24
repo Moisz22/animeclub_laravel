@@ -31,3 +31,4 @@ Route::get('notifications/get',[App\Http\Controllers\NotificationController::cla
 Route::get('notifications/show',[App\Http\Controllers\NotificationController::class, 'index'])->name('notifications.index');
 Route::get('notifications/marcar_todas',[App\Http\Controllers\NotificationController::class, 'marcar_todas'])->name('notifications.marcartodas');
 Route::get('notifications/consultadata', [App\Http\Controllers\NotificationController::class, 'consultadata'])->name('notifications.consultadata');
+Route::get('notifications/marcarnotificacion/{id}', [App\Http\Controllers\NotificationController::class, 'marcarNotificacionLeida'])->name('notifications.marcarnotificacion');

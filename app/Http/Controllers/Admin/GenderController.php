@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Gender;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 use Exception;
 
 class GenderController extends Controller
@@ -142,6 +144,17 @@ class GenderController extends Controller
             {
                 DB::table('genders')->where('id', $id)->delete();
             }
+
+            $accion = 'El usuario: '.Auth::user()->name.' eliminó '. count($ids) .' generos';
+            DB::table('audit')->insert([
+                'user_id' => Auth::id(),
+                'tabla' => 'gender',
+                'accion' => $accion,
+                'metodo' => 'eliminarmas',
+                'visto' => false,
+                'created_at' => Carbon::now()
+            ]);
+
             DB::commit();
             return response()->json(['sms' => 'ok']);
         }
