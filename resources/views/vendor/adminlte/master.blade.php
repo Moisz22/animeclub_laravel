@@ -54,7 +54,7 @@
         <link rel="shortcut icon" href="{{ asset('favicons/favicon.ico') }}" />
     @elseif(config('adminlte.use_full_favicon'))
         <link rel="shortcut icon" href="{{ asset('favicons/favicon.ico') }}" />
-        {{-- <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('favicons/apple-icon-57x57.png') }}">
+        <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('favicons/apple-icon-57x57.png') }}">
         <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('favicons/apple-icon-60x60.png') }}">
         <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('favicons/apple-icon-72x72.png') }}">
         <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('favicons/apple-icon-76x76.png') }}">
@@ -65,8 +65,8 @@
         <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicons/apple-icon-180x180.png') }}">
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicons/favicon-16x16.png') }}">
         <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicons/favicon-32x32.png') }}">
-        <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicons/favicon-96x96.png') }}">
-        <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('favicons/android-icon-192x192.png') }}"> --}}
+        {{-- <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicons/favicon-96x96.png') }}"> --}}
+        <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('favicons/android-icon-192x192.png') }}">
         <link rel="manifest" href="{{ asset('favicons/manifest.json') }}">
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="{{ asset('favicon/ms-icon-144x144.png') }}">
@@ -84,44 +84,13 @@
         <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-        {{-- <script>
-            if(sessionStorage.getItem('modo_noche') == "true")
-            {
-                document.getElementById('modo_noche').setAttribute('src', '{{asset("iconos/sol.png")}}')
-                document.querySelector('body').classList.add('dark-mode');
-                sessionStorage.setItem('modo_noche', 'true');
-            }
-        </script> --}}
         {{-- Javascript global --}}
         <script>
             $(function()
             {
-                $('[data-toggle1="tooltip"]').tooltip()
+                $('[data-toggle1="tooltip"]').tooltip({hide: '100'})
             })
 
-            /* document.getElementById('modo_noche').addEventListener('click', ()=>{
-
-                if(sessionStorage.getItem('modo_noche') == null)
-                {
-                    document.getElementById('modo_noche').setAttribute('src', '{{asset("iconos/sol.png")}}')
-                    document.querySelector('body').classList.add('dark-mode');
-                    sessionStorage.setItem('modo_noche', 'true');
-                    return;
-                }
-
-                if(!document.querySelector('body').classList.contains('dark-mode'))
-                {
-                    document.getElementById('modo_noche').setAttribute('src', '{{asset("iconos/sol.png")}}')
-                    document.querySelector('body').classList.add('dark-mode');
-                    sessionStorage.setItem('modo_noche', 'true');
-                }
-                else
-                {
-                    document.getElementById('modo_noche').setAttribute('src', '{{asset("iconos/luna.png")}}')
-                    document.querySelector('body').classList.remove('dark-mode');
-                    sessionStorage.setItem('modo_noche', 'false');
-                }
-            }) */
         </script>
 
         {{-- Configured Scripts --}}

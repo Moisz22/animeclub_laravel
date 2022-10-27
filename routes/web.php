@@ -19,6 +19,8 @@ use App\Mail\Prueba;
 
 //Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::get('/',[AnimeController::class, 'index']); /* ->middleware(['auth:sanctum', 'verified']) */;
 
 /* Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

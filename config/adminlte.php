@@ -251,7 +251,7 @@ return [
             'type'         => 'navbar-notification',
             'id'           => 'my-notification',      // An ID attribute (required).
             'icon'         => 'fas fa-bell',          // A font awesome icon (required).
-            'icon_color'   => 'warning',              // The initial icon color (optional).
+            'icon_color'   => 'light',              // The initial icon color (optional).
             'label'        => 0,                      // The initial label for the badge (optional).
             'label_color'  => 'danger',               // The initial badge color (optional).
             'url'          => 'admin/notifications/show',   // The url to access all notifications/elements (required).
@@ -263,14 +263,14 @@ return [
                 'period' => 10,                       // The update period for get new data (in seconds, optional).
             ],
         ],
-        [
+        /* [
             'text'        => 'Animes',
             'url'         => 'animes',
             'icon'        => 'fas fa-fw fa-ghost',
             'label'       => 5,
             'label_color' => 'success',
             'active'      => ['', 'admin'],
-        ],
+        ], */
         ['header' => 'MODULOS'],
         [
             'text' => 'Seguridad',
@@ -353,7 +353,7 @@ return [
                 ], */
                 [
                     'text' => 'Notificaciones',
-                    'url'  => 'admin/notificaciones',
+                    'url'  => 'admin/notifications/show',
                     'icon' => 'fas fa-fw fa-bell',
                 ],
                 /* [

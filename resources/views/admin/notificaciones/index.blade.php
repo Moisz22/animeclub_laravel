@@ -10,6 +10,26 @@
             background: rgb(206, 223, 228);
         }
 
+        .eye
+        {
+            position:absolute;
+            height:20px;
+            width:20px;
+            margin-top: 60px;
+            margin-right: 10px;
+            top: -15px;
+            left : 40px;
+            z-index: 1;
+        }
+
+        .heaven
+        {
+            /* position:absolute; */
+            height:60px;
+            width:60px;
+            z-index: -1;
+        }
+
     </style>
 @stop
 
@@ -18,7 +38,6 @@
 @stop
 
 @section('content')
-    
     <div class="container">
         <div class="row">
             <div class="col-none col-sm-2"></div>
@@ -28,10 +47,13 @@
                     <div class="card-body">
                         <h2 class="text-center"><b>Notificaciones</b></h2>
                         <br>
-                        <div class="row">
-                            <div class="col-3 col-sm-8"></div>
-                            <div id="marcar_todas" class="col-9 col-sm-4"><button class="btn btn-outline-secondary">Marcar todas como leídas</button></div>
+                        <div class="clearfix">
+                            <div id="marcar_todas" class="float-right"><button class="btn btn-outline-secondary">Marcar todas como leídas</button></div>
                         </div>
+                        {{-- <div class="row">
+                            <div class="col-3 col-sm-7"></div>
+                            <div id="marcar_todas" class="col-9 col-sm-5"><button class="btn btn-outline-secondary">Marcar todas como leídas</button></div>
+                        </div> --}}
                         <br>
                         {{-- tabla con notificaciones --}}
                         <button id="mostrar_todas" class="btn btn-primary">Todas</button>
@@ -261,7 +283,7 @@
                 {
                     $('#datatable_notificaciones').DataTable().ajax.reload();
                     $('#tabla_notificacion_completa').DataTable().row.add($('#datatable_notificaciones').DataTable().row( this ).data()).draw();
-                    $('#modalNotificacion').modal('show')
+                    $('#modalNotificacion').modal('show');
                 }
             })
 

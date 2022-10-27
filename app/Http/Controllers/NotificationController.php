@@ -58,18 +58,38 @@ class NotificationController extends Controller
         $pendiente = '';
         $color_texto_tiempo = 'text-secondary';
         $usuario = '';
+
+        $imagen_agregar = asset('iconos/agregar.png');
+        $imagen_delete = asset('iconos/trash.png');
+        $imagen_editar = asset('iconos/pencil.png');
+
         foreach ($notificaciones as $not)
         {
             $usuario = User::withTrashed()->find($not->user_id);
+            
+            if($not->metodo == 'create')
+            {
+                $imagen2 = $imagen_agregar;
+            }
+            else if($not->metodo == 'update')
+            {
+                $imagen2 = $imagen_editar;
+            }
+            else
+            {
+                $imagen2 = $imagen_delete;
+            }
+
             if(!$not->visto)
             {
                 $pendiente = '<i class="fas fa-circle text-primary d-block m-auto"></i>';
                 $color_texto_tiempo = 'text-primary';
             } 
-            $array_temp = [$not->id,$not->metodo,'<img width="60px" height="60px" src="'.asset('img/avatars'). '/'. $usuario->profile_photo_path.'" class="user-image img-circle elevation-3">', $not->accion.'<p class="'.$color_texto_tiempo.'">'. $this->convertir_tiempo($not->created_at).'</p>', $not->tabla, $not->created_at, $pendiente]; 
+            $array_temp = [$not->id,$not->metodo,'<div style="position: relative; left: 0; top: 0;"><img class="heaven user-image img-circle elevation-2" width="60px" height="60px" src="'.asset('img/avatars'). '/'. $usuario->profile_photo_path.'" class="user-image img-circle elevation-3"><img class="eye" src="'. $imagen2 .'"> </div>', $not->accion.'<p class="'.$color_texto_tiempo.'">'. $this->convertir_tiempo($not->created_at).'</p>', $not->tabla, $not->created_at, $pendiente]; 
             array_push($jsonfinal, $array_temp);
             $pendiente = '';
             $color_texto_tiempo = 'text-secondary';
+            $imagen2 = '';
         }
         return response()->json(['data' => $jsonfinal]);
     }

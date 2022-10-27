@@ -12,3 +12,20 @@
 table{
 	width: 100%;
 }
+
+.eye{
+	position:absolute;
+	height:200px;
+	width:200px;
+	top: 40px;
+	left : 40px;
+	z-index: 1;
+  }
+  
+  .heaven
+  {
+	position:absolute;
+	height:300px;
+	width:300px;
+	z-index: -1;
+  }

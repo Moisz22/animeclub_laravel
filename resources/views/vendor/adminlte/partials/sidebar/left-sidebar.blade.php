@@ -25,3 +25,7 @@
     </div>
 
 </aside>
+
+{{-- <div class="progress" style="height: 60px;">
+    <div class="progress-bar" role="progressbar" style="width: 35%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+</div> --}}
